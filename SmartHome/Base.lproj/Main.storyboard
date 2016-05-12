@@ -1,25 +1,304 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2aO-10-SVE">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Smart Home-->
+        <scene sceneID="fd1-F5-wH9">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <navigationController title="Smart Home" id="2aO-10-SVE" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="01w-ky-R48">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.22271174186402642" green="0.64318910256410255" blue="0.50351612794791989" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="M5h-fu-6cw" kind="relationship" relationship="rootViewController" id="zAR-My-ygh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1TQ-jV-K6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2244" y="47"/>
+        </scene>
+        <!--Luminosity-->
+        <scene sceneID="t59-O4-uA4">
+            <objects>
+                <viewController id="lmy-4M-bsb" customClass="LuminosityViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="xx2-Dw-uRD"/>
+                        <viewControllerLayoutGuide type="bottom" id="Iqx-us-9nv"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="fte-Ig-7fl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test1" translatesAutoresizingMaskIntoConstraints="NO" id="IFO-Ch-Yz5">
+                                <rect key="frame" x="140" y="0.0" width="320" height="412"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="412" id="tHk-1H-BBi"/>
+                                    <constraint firstAttribute="width" constant="320" id="wno-BD-ZVA"/>
+                                </constraints>
+                            </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="9" minValue="0.0" maxValue="13" translatesAutoresizingMaskIntoConstraints="NO" id="2Xh-Jr-0Yi">
+                                <rect key="frame" x="140" y="437" width="320" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="316" id="7TN-fx-hce"/>
+                                </constraints>
+                                <color key="minimumTrackTintColor" red="0.051424151020000003" green="0.14495535349999999" blue="0.2471554487" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="maximumTrackTintColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="lmy-4M-bsb" eventType="valueChanged" id="dMV-GR-VMY"/>
+                                </connections>
+                            </slider>
+                            <imageView userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u6s-3l-oWO">
+                                <rect key="frame" x="140" y="0.0" width="320" height="412"/>
+                                <color key="backgroundColor" red="0.25248725220000001" green="0.27471135839999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Iqx-us-9nv" firstAttribute="top" secondItem="u6s-3l-oWO" secondAttribute="bottom" constant="139" id="EzI-ao-p2y"/>
+                            <constraint firstItem="IFO-Ch-Yz5" firstAttribute="leading" secondItem="u6s-3l-oWO" secondAttribute="leading" id="HaK-Qd-IoM"/>
+                            <constraint firstItem="IFO-Ch-Yz5" firstAttribute="trailing" secondItem="u6s-3l-oWO" secondAttribute="trailing" id="L04-o0-ZoH"/>
+                            <constraint firstItem="IFO-Ch-Yz5" firstAttribute="centerX" secondItem="2Xh-Jr-0Yi" secondAttribute="centerX" id="Pnp-8P-wp8"/>
+                            <constraint firstItem="u6s-3l-oWO" firstAttribute="centerX" secondItem="fte-Ig-7fl" secondAttribute="centerX" id="SkA-sR-sMu"/>
+                            <constraint firstItem="2Xh-Jr-0Yi" firstAttribute="top" secondItem="IFO-Ch-Yz5" secondAttribute="bottom" constant="25" id="e0d-8i-Box"/>
+                            <constraint firstItem="IFO-Ch-Yz5" firstAttribute="top" secondItem="u6s-3l-oWO" secondAttribute="top" id="vDg-8X-t3M"/>
+                            <constraint firstItem="IFO-Ch-Yz5" firstAttribute="bottom" secondItem="u6s-3l-oWO" secondAttribute="bottom" id="ybH-vV-4Bn"/>
+                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="Nex-Vx-MQA"/>
+                    <navigationItem key="navigationItem" title="Luminosity" id="Abv-oO-Mxd"/>
+                    <connections>
+                        <outlet property="imageView" destination="u6s-3l-oWO" id="hLT-wn-ICe"/>
+                        <outlet property="slider" destination="2Xh-Jr-0Yi" id="cZq-mU-BVm"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WyB-ZJ-i0P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="4725" y="410"/>
+        </scene>
+        <!--Temperature-->
+        <scene sceneID="vNL-ct-Su8">
+            <objects>
+                <navigationController title="Temperature" id="4Wl-el-njK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Temperature" image="termo_final" id="YMb-J0-psK">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PFE-bW-got">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.27504365021456806" green="0.74843749999999998" blue="0.71465793161086588" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.08848452708" green="0.24195830069999999" blue="0.40590945509999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ocD-8g-dLy" kind="relationship" relationship="rootViewController" id="qsB-dy-Dwq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VUU-CP-5Lh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3984" y="-342"/>
+        </scene>
+        <!--Temperature-->
+        <scene sceneID="JgN-Cc-CWL">
+            <objects>
+                <viewController id="ocD-8g-dLy" customClass="TemperatureViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WZA-7N-0qE"/>
+                        <viewControllerLayoutGuide type="bottom" id="jdX-lO-9Pe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="22j-Jq-uwq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dne-Yh-n3b">
+                                <rect key="frame" x="160" y="368" width="280" height="128"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="QOE-ns-1vv">
+                                        <rect key="frame" x="223" y="82" width="51" height="31"/>
+                                        <color key="backgroundColor" red="0.08848452708" green="0.24195830069999999" blue="0.40590945509999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="onTintColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Temperature: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6O-ZO-6V2">
+                                        <rect key="frame" x="9" y="18" width="97" height="29"/>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="17"/>
+                                        <color key="textColor" red="0.08848452708" green="0.24195830069999999" blue="0.40590945509999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUH-QJ-DmR">
+                                        <rect key="frame" x="106" y="18" width="28" height="29"/>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="17"/>
+                                        <color key="textColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thermostat: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ns6-vE-nSD">
+                                        <rect key="frame" x="9" y="82" width="97" height="31"/>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="17"/>
+                                        <color key="textColor" red="0.08848452708" green="0.24195830069999999" blue="0.40590945509999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F9V-vM-kHh">
+                                        <rect key="frame" x="0.0" y="64" width="280" height="1"/>
+                                        <color key="backgroundColor" red="0.08848452708" green="0.24195830069999999" blue="0.40590945509999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MjG-Jl-6vc">
+                                        <rect key="frame" x="198" y="17" width="74" height="29"/>
+                                        <color key="backgroundColor" red="0.08848452708" green="0.24195830069999999" blue="0.40590945509999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <segments>
+                                            <segment title="℃"/>
+                                            <segment title="℉"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="O0b-k9-rDX"/>
+                                    <constraint firstAttribute="height" constant="128" id="eZc-Tb-155"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Dne-Yh-n3b" firstAttribute="centerX" secondItem="22j-Jq-uwq" secondAttribute="centerX" id="sqb-7R-PpC"/>
+                            <constraint firstItem="jdX-lO-9Pe" firstAttribute="top" secondItem="Dne-Yh-n3b" secondAttribute="bottom" constant="55" id="zxy-Cl-3NJ"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="6v7-Ra-pWt"/>
+                    <navigationItem key="navigationItem" title="Temperature" id="Wh5-DQ-zSA"/>
+                    <connections>
+                        <outlet property="containerView" destination="Dne-Yh-n3b" id="8WB-Xk-fI3"/>
+                        <outlet property="segmentedControl" destination="MjG-Jl-6vc" id="zAr-05-hk1"/>
+                        <outlet property="switchButton" destination="QOE-ns-1vv" id="aXI-SZ-Mf2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FKp-V3-phz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4707" y="-342"/>
+        </scene>
+        <!--Smart Home-->
+        <scene sceneID="97c-wr-AUT">
+            <objects>
+                <tabBarController id="M5h-fu-6cw" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Smart Home" id="kJ5-es-9qR"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Lh0-NG-KJh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.088484527079505729" green="0.24195830070766158" blue="0.40590945512820509" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.051424151022737806" green="0.14495535354944861" blue="0.2471554487179487" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.27450980392156865" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBar>
+                    <connections>
+                        <segue destination="4Wl-el-njK" kind="relationship" relationship="viewControllers" id="rQW-sz-nWQ"/>
+                        <segue destination="v2F-Fr-LHn" kind="relationship" relationship="viewControllers" id="Quf-dD-FFR"/>
+                        <segue destination="Ces-BP-sqD" kind="relationship" relationship="viewControllers" id="IIM-I6-mSy"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iPC-rv-Ge3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2972" y="47"/>
+        </scene>
+        <!--Luminosity-->
+        <scene sceneID="0nD-T3-D2k">
+            <objects>
+                <navigationController title="Luminosity" id="v2F-Fr-LHn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Luminosity" image="lumino_final" id="SJ5-pd-WYU">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pzj-oa-bx3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="lmy-4M-bsb" kind="relationship" relationship="rootViewController" id="byw-Yv-AG7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uoe-Fm-Ij7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3984" y="410"/>
+        </scene>
+        <!--Washing Machine-->
+        <scene sceneID="vtb-LO-Vur">
+            <objects>
+                <navigationController title="Washing Machine" id="Ces-BP-sqD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Washing Machine" image="washmash_final" id="fwo-mW-GaJ"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ece-g2-Diq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Utk-fs-mfH" kind="relationship" relationship="rootViewController" id="9JM-F8-dIy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s1O-uT-mlg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3930" y="1135"/>
+        </scene>
+        <!--Washing Machine-->
+        <scene sceneID="4M0-0q-cL4">
+            <objects>
+                <viewController id="Utk-fs-mfH" customClass="ServoMotorViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5WT-ks-SZ9"/>
+                        <viewControllerLayoutGuide type="bottom" id="4b5-DW-FSC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lw2-aY-jgO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0w-6C-1SS">
+                                <rect key="frame" x="126" y="293" width="353" height="258"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Running Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEh-QP-7lb">
+                                        <rect key="frame" x="8" y="8" width="105" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="01:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfh-vs-18A">
+                                        <rect key="frame" x="8" y="37" width="116" height="67"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="35"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Washing Machine" id="Hfy-5c-3FQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="adl-oH-z11" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4552" y="1127"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="lumino_final" width="35" height="35"/>
+        <image name="termo_final" width="35" height="35"/>
+        <image name="test1" width="300" height="300"/>
+        <image name="washmash_final" width="35" height="35"/>
+    </resources>
 </document>
