@@ -39,13 +39,28 @@
     CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
     
     [self setupBublesImage];
+    [self setupServoLabes];
 }
 
 - (void)setupBublesImage {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height-40)];
     imageView.image = [UIImage imageNamed:@"buble_final.png"];
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:imageView];
+}
+
+- (void)setupServoLabes {
+    UILabel *startLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, self.frame.size.height-30, 83, 21)];
+    startLabel.text = @"Start Time";
+    startLabel.font = [UIFont fontWithName:@"AvenirNextCondensed-DemiBold" size:17];
+    startLabel.textColor = [UIColor whiteColor];
+    [self addSubview:startLabel];
+    
+    UILabel *remainingLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-124, self.frame.size.height-30, 124, 21)];
+    remainingLabel.text = @"Remaining Time";
+    remainingLabel.font = [UIFont fontWithName:@"AvenirNextCondensed-DemiBold" size:17];
+    remainingLabel.textColor = [UIColor whiteColor];
+    [self addSubview:remainingLabel];
 }
 
 

@@ -62,6 +62,19 @@
                                 <color key="backgroundColor" red="0.25248725220000001" green="0.27471135839999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PxL-gp-gWW">
+                                <rect key="frame" x="256" y="477" width="88" height="46"/>
+                                <color key="backgroundColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="YHK-Wa-dL2"/>
+                                    <constraint firstAttribute="width" constant="88" id="qhj-zE-HV8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="17"/>
+                                <color key="tintColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Switch On">
+                                    <color key="titleColor" red="0.08848452708" green="0.24195830069999999" blue="0.40590945509999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -71,7 +84,9 @@
                             <constraint firstItem="IFO-Ch-Yz5" firstAttribute="centerX" secondItem="2Xh-Jr-0Yi" secondAttribute="centerX" id="Pnp-8P-wp8"/>
                             <constraint firstItem="u6s-3l-oWO" firstAttribute="centerX" secondItem="fte-Ig-7fl" secondAttribute="centerX" id="SkA-sR-sMu"/>
                             <constraint firstItem="2Xh-Jr-0Yi" firstAttribute="top" secondItem="IFO-Ch-Yz5" secondAttribute="bottom" constant="25" id="e0d-8i-Box"/>
+                            <constraint firstItem="PxL-gp-gWW" firstAttribute="top" secondItem="2Xh-Jr-0Yi" secondAttribute="bottom" constant="10" id="rVX-D4-lf6"/>
                             <constraint firstItem="IFO-Ch-Yz5" firstAttribute="top" secondItem="u6s-3l-oWO" secondAttribute="top" id="vDg-8X-t3M"/>
+                            <constraint firstItem="PxL-gp-gWW" firstAttribute="centerX" secondItem="fte-Ig-7fl" secondAttribute="centerX" id="wZw-an-pf3"/>
                             <constraint firstItem="IFO-Ch-Yz5" firstAttribute="bottom" secondItem="u6s-3l-oWO" secondAttribute="bottom" id="ybH-vV-4Bn"/>
                         </constraints>
                     </view>
@@ -80,6 +95,7 @@
                     <connections>
                         <outlet property="imageView" destination="u6s-3l-oWO" id="hLT-wn-ICe"/>
                         <outlet property="slider" destination="2Xh-Jr-0Yi" id="cZq-mU-BVm"/>
+                        <outlet property="switchOnButton" destination="PxL-gp-gWW" id="Eah-GF-zU1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WyB-ZJ-i0P" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -154,7 +170,7 @@
                                         <color key="backgroundColor" red="0.08848452708" green="0.24195830069999999" blue="0.40590945509999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MjG-Jl-6vc">
-                                        <rect key="frame" x="198" y="17" width="74" height="29"/>
+                                        <rect key="frame" x="198" y="18" width="74" height="29"/>
                                         <color key="backgroundColor" red="0.08848452708" green="0.24195830069999999" blue="0.40590945509999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <segments>
                                             <segment title="℃"/>
@@ -267,32 +283,85 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0w-6C-1SS">
-                                <rect key="frame" x="126" y="293" width="353" height="258"/>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wvb-GW-tUF">
+                                <rect key="frame" x="140" y="600" width="320" height="216"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </pickerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0w-6C-1SS">
+                                <rect key="frame" x="150" y="191" width="300" height="360"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Running Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEh-QP-7lb">
-                                        <rect key="frame" x="8" y="8" width="105" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="01:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfh-vs-18A">
-                                        <rect key="frame" x="8" y="37" width="116" height="67"/>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="T3y-FU-arv">
+                                        <rect key="frame" x="8" y="63" width="284" height="2"/>
+                                        <color key="progressTintColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="trackTintColor" red="0.08848452708" green="0.24195830069999999" blue="0.40590945509999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </progressView>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="xyD-au-bFf">
+                                        <rect key="frame" x="8" y="93" width="284" height="29"/>
+                                        <color key="backgroundColor" red="0.08848452708" green="0.24195830069999999" blue="0.40590945509999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <segments>
+                                            <segment title="Temperature"/>
+                                            <segment title="RPM"/>
+                                            <segment title="Time"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="segmentedControlAction:" destination="Utk-fs-mfH" eventType="touchUpOutside" id="3O6-Ik-qZR"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfh-vs-18A">
+                                        <rect key="frame" x="8" y="6" width="106" height="45"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="35"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.08848452708" green="0.24195830069999999" blue="0.40590945509999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeu-0n-AVU">
+                                        <rect key="frame" x="186" y="6" width="106" height="45"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="35"/>
+                                        <color key="textColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmE-cJ-Qls">
+                                        <rect key="frame" x="121" y="193" width="58" height="58"/>
+                                        <color key="backgroundColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="20"/>
+                                        <color key="tintColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Start">
+                                            <color key="titleColor" red="0.08848452708" green="0.24195830069999999" blue="0.40590945509999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="startAction:" destination="Utk-fs-mfH" eventType="touchUpInside" id="Tpv-PU-QyF"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="2IB-U0-lmt"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="s0w-6C-1SS" firstAttribute="bottom" secondItem="4b5-DW-FSC" secondAttribute="top" id="Vbx-DP-d41"/>
+                            <constraint firstItem="s0w-6C-1SS" firstAttribute="centerX" secondItem="Lw2-aY-jgO" secondAttribute="centerX" id="c0r-WB-fWT"/>
+                            <constraint firstItem="s0w-6C-1SS" firstAttribute="top" secondItem="5WT-ks-SZ9" secondAttribute="bottom" constant="127" id="zeO-Pq-jmM"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Washing Machine" id="Hfy-5c-3FQ"/>
+                    <connections>
+                        <outlet property="progressBar" destination="T3y-FU-arv" id="2Sh-m0-nJ6"/>
+                        <outlet property="remainingTimeLabel" destination="eeu-0n-AVU" id="wyc-w6-9Lp"/>
+                        <outlet property="segmentedControl" destination="xyD-au-bFf" id="NOq-oL-ye9"/>
+                        <outlet property="startButton" destination="tmE-cJ-Qls" id="6hC-09-ETC"/>
+                        <outlet property="startTimeLabel" destination="nfh-vs-18A" id="olx-b4-T2b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adl-oH-z11" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4552" y="1127"/>
+            <point key="canvasLocation" x="4659" y="1135"/>
         </scene>
     </scenes>
     <resources>

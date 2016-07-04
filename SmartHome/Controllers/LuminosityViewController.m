@@ -13,6 +13,7 @@
 @interface LuminosityViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
+@property (weak, nonatomic) IBOutlet UIButton *switchOnButton;
 
 @property (nonatomic, strong) NSArray *colorArray;
 
@@ -24,6 +25,10 @@
     [super viewDidLoad];
     
     self.colorArray = @[@0x000000, @0xfe0000, @0xff7900, @0xffb900, @0xffde00, @0xfcff00, @0xd2ff00, @0x05c000, @0x00c0a7, @0x0600ff, @0x6700bf, @0x9500c0, @0xbf0199, @0xffffff];
+    
+    self.switchOnButton.layer.borderColor = [[UIColor colorWithRed:13.0/255.0 green:37.0/255.0 blue:63.0/255.0 alpha:1.0] CGColor];
+    self.switchOnButton.layer.cornerRadius = 12.0;
+    self.switchOnButton.layer.borderWidth = 1.0;
 }
 
 - (IBAction)sliderValueChanged:(id)sender {
