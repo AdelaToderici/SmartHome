@@ -8,10 +8,7 @@
 
 #import "TemperatureViewController.h"
 #import "GraphicView.h"
-
-#define Y_ORIGIN 86
-#define DAMPING_VALUE 70.0f
-#define VELOCITY_VALUE 10.0f
+#import "Constants.h"
 
 @interface TemperatureViewController ()
 
@@ -28,17 +25,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.switchButton.layer.cornerRadius = 18.0;
-    self.segmentedControl.layer.cornerRadius = 6.0;
+    self.switchButton.layer.cornerRadius = kCornerRadius18;
+    self.segmentedControl.layer.cornerRadius = kCornerRadius6;
     
-    self.containerView.layer.borderColor = [[UIColor colorWithRed:13.0/255.0 green:37.0/255.0 blue:63.0/255.0 alpha:1.0] CGColor];
+    self.containerView.layer.borderColor = [kNavyBlueColor CGColor];
     self.containerView.layer.borderWidth = 1.0;
-    self.containerView.layer.cornerRadius = 5.0;
+    self.containerView.layer.cornerRadius = kPointSize5;
     
     self.graphArray = @[@6, @9, @5, @7, @10, @8, @3, @6, @5, @9, @4, @6];
     
-    self.graphView = [[GraphicView alloc] initWithFrame:CGRectMake(20, Y_ORIGIN, self.view.frame.size.width-40, self.view.frame.size.height/2.7)];
-    self.graphView.backgroundColor = [UIColor clearColor];
+    self.graphView = [[GraphicView alloc]
+                      initWithFrame:CGRectMake(kMargin20,
+                                               kFrameSize86,
+                                               self.view.frame.size.width-kFrameSize40,
+                                               self.view.frame.size.height/kFrameDivision2_7)];
+    self.graphView.backgroundColor = kClearColor;
     [self.view addSubview:self.graphView];
 }
 
@@ -48,11 +49,8 @@
 
 - (void)drawGraphView {
     _graphView.graphPoints = self.graphArray;
-    _graphView.titleGraphLabel.text = @"Temperature Flow";
     [_graphView setNeedsDisplay];
 }
-
-
 
 /*
 #pragma mark - Navigation

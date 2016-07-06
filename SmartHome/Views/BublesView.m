@@ -7,6 +7,8 @@
 //
 
 #import "BublesView.h"
+#import "Constants.h"
+#import "UIComponents.h"
 
 @implementation BublesView
 
@@ -21,16 +23,16 @@
                                                      cornerRadii:CGSizeMake(0, 0)];
     [path addClip];
     
-    UIColor *startColor = [UIColor whiteColor];
-    UIColor *middleColor = [UIColor colorWithRed:70.0/255.0 green:191.0/255.0 blue:182.0/255.0 alpha:1.0];
-    UIColor *endColor = [UIColor colorWithRed:13.0/255.0 green:37.0/255.0 blue:63.0/255.0 alpha:1.0];
+    UIColor *startColor = kWhiteColor;
+    UIColor *middleColor = kTurquoiseColor;
+    UIColor *endColor = kNavyBlueColor;
     
     // draw gradient
     NSArray *colors = @[(id)startColor.CGColor, (id)middleColor.CGColor, (id)endColor.CGColor];
     CFArrayRef colorsRef = (__bridge CFArrayRef)colors;
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGFloat colorLocations[4] = {0.0, 0.3, 0.9};
+    CGFloat colorLocations[3] = {0.0, kGradient0_3, kGradient0_9};
     
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, colorsRef, colorLocations);
     
@@ -43,25 +45,30 @@
 }
 
 - (void)setupBublesImage {
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height-40)];
-    imageView.image = [UIImage imageNamed:@"buble_final.png"];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    UIImageView *imageView = [UIComponents imageViewWithFrame:CGRectMake(0, 0,
+                                                                         self.frame.size.width,
+                                                                         self.frame.size.height-kFrameSize40)
+                                                        image:[UIImage imageNamed:@"buble_final.png"]
+                                                  contentMode:UIViewContentModeScaleAspectFit];
     [self addSubview:imageView];
 }
 
 - (void)setupServoLabes {
-    UILabel *startLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, self.frame.size.height-30, 83, 21)];
-    startLabel.text = @"Start Time";
-    startLabel.font = [UIFont fontWithName:@"AvenirNextCondensed-DemiBold" size:17];
-    startLabel.textColor = [UIColor whiteColor];
+    UILabel *startLabel = [UIComponents labelWithFrame:CGRectMake(kMargin20,
+                                                                  self.frame.size.height-kFrameSize30,
+                                                                  kFrameSize83, kFrameSize21)
+                                                 title:@"Start Time"
+                                                  font:kAvenirNextFont17
+                                                 color:kWhiteColor];
     [self addSubview:startLabel];
     
-    UILabel *remainingLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-124, self.frame.size.height-30, 124, 21)];
-    remainingLabel.text = @"Remaining Time";
-    remainingLabel.font = [UIFont fontWithName:@"AvenirNextCondensed-DemiBold" size:17];
-    remainingLabel.textColor = [UIColor whiteColor];
+    UILabel *remainingLabel = [UIComponents labelWithFrame:CGRectMake(self.frame.size.width-kFrameSize124,
+                                                                      self.frame.size.height-kFrameSize30,
+                                                                      kFrameSize124, kFrameSize21)
+                                                     title:@"Remaining Time"
+                                                      font:kAvenirNextFont17
+                                                     color:kWhiteColor];
     [self addSubview:remainingLabel];
 }
-
 
 @end

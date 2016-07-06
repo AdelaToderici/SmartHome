@@ -11,7 +11,6 @@
 @interface GraphicView : UIView
 
 @property (nonatomic, strong) NSArray *graphPoints;
-@property (strong, nonatomic) UILabel *titleGraphLabel;
 @property (nonatomic, assign) NSInteger counter;
 
 - (CGFloat)columnXPoint:(int)column;

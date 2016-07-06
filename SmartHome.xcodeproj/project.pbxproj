@@ -19,6 +19,7 @@
 		CFBF845B1CE3E76600021987 /* SensorRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBF845A1CE3E76600021987 /* SensorRealm.m */; };
 		CFBF84601CE3E78100021987 /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBF845D1CE3E78100021987 /* SessionManager.m */; };
 		CFBF84611CE3E78100021987 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBF845F1CE3E78100021987 /* APIManager.m */; };
+		CFDD6BC21D2D47E9005D42BD /* UIComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDD6BC11D2D47E9005D42BD /* UIComponents.m */; };
 		CFDFAB041CE3E9AC00511441 /* LuminosityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDFAAFF1CE3E9AC00511441 /* LuminosityViewController.m */; };
 		CFDFAB051CE3E9AC00511441 /* ServoMotorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDFAB011CE3E9AC00511441 /* ServoMotorViewController.m */; };
 		CFDFAB061CE3E9AC00511441 /* TemperatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDFAB031CE3E9AC00511441 /* TemperatureViewController.m */; };
@@ -74,6 +75,9 @@
 		CFBF845D1CE3E78100021987 /* SessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionManager.m; sourceTree = "<group>"; };
 		CFBF845E1CE3E78100021987 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		CFBF845F1CE3E78100021987 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		CFDD6BC01D2D47E9005D42BD /* UIComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIComponents.h; sourceTree = "<group>"; };
+		CFDD6BC11D2D47E9005D42BD /* UIComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIComponents.m; sourceTree = "<group>"; };
+		CFDD6BC41D2D5B9E005D42BD /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		CFDFAAFE1CE3E9AC00511441 /* LuminosityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuminosityViewController.h; path = SmartHome/Controllers/LuminosityViewController.h; sourceTree = SOURCE_ROOT; };
 		CFDFAAFF1CE3E9AC00511441 /* LuminosityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LuminosityViewController.m; path = SmartHome/Controllers/LuminosityViewController.m; sourceTree = SOURCE_ROOT; };
 		CFDFAB001CE3E9AC00511441 /* ServoMotorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServoMotorViewController.h; path = SmartHome/Controllers/ServoMotorViewController.h; sourceTree = SOURCE_ROOT; };
@@ -171,6 +175,7 @@
 		CFBF84171CE3C94700021987 /* SmartHome */ = {
 			isa = PBXGroup;
 			children = (
+				CFDD6BBC1D2D471D005D42BD /* Utilities */,
 				CFBF84551CE3E61900021987 /* API */,
 				CFDFAAFD1CE3E92700511441 /* Views */,
 				CFBF844B1CE3CADE00021987 /* Controllers */,
@@ -265,6 +270,16 @@
 				CFDFAB0C1CE3E9E000511441 /* SensorResponseModel.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CFDD6BBC1D2D471D005D42BD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CFDD6BC01D2D47E9005D42BD /* UIComponents.h */,
+				CFDD6BC11D2D47E9005D42BD /* UIComponents.m */,
+				CFDD6BC41D2D5B9E005D42BD /* Constants.h */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		CFDFAAFD1CE3E92700511441 /* Views */ = {
@@ -553,6 +568,7 @@
 				CFDFAB0D1CE3E9E000511441 /* SensorModel.m in Sources */,
 				CFDFAB061CE3E9AC00511441 /* TemperatureViewController.m in Sources */,
 				CFF7C4F91CE4CC8A0026540E /* BublesView.m in Sources */,
+				CFDD6BC21D2D47E9005D42BD /* UIComponents.m in Sources */,
 				CFBF841A1CE3C94700021987 /* main.m in Sources */,
 				CFDFAB041CE3E9AC00511441 /* LuminosityViewController.m in Sources */,
 			);
