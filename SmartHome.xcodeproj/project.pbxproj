@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05CF7930DC2B63A9D5D730D4 /* Pods_SmartHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AAC80EB3DA43164F595D07A /* Pods_SmartHome.framework */; };
 		B8B1ECF7CC07C83E7A60230B /* Pods_SmartHomeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC6B3330C5583F798B77BFD /* Pods_SmartHomeTests.framework */; };
 		CFBF841A1CE3C94700021987 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBF84191CE3C94700021987 /* main.m */; };
 		CFBF841D1CE3C94700021987 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBF841C1CE3C94700021987 /* AppDelegate.m */; };
@@ -56,12 +55,12 @@
 		CAC6B3330C5583F798B77BFD /* Pods_SmartHomeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartHomeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBF84151CE3C94700021987 /* SmartHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBF84191CE3C94700021987 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CFBF841B1CE3C94700021987 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		CFBF841C1CE3C94700021987 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CFBF841B1CE3C94700021987 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
+		CFBF841C1CE3C94700021987 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../AppDelegate.m; sourceTree = "<group>"; };
 		CFBF84221CE3C94700021987 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CFBF84241CE3C94800021987 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CFBF84241CE3C94800021987 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		CFBF84271CE3C94800021987 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CFBF84291CE3C94800021987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFBF84291CE3C94800021987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		CFBF842E1CE3C94800021987 /* SmartHomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartHomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBF84321CE3C94800021987 /* SmartHomeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartHomeTests.m; sourceTree = "<group>"; };
 		CFBF84341CE3C94800021987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,7 +104,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05CF7930DC2B63A9D5D730D4 /* Pods_SmartHome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,12 +166,7 @@
 				CFBF84581CE3E72B00021987 /* Models */,
 				CFDFAAFD1CE3E92700511441 /* Views */,
 				CFBF844B1CE3CADE00021987 /* Controllers */,
-				CFBF841B1CE3C94700021987 /* AppDelegate.h */,
-				CFBF841C1CE3C94700021987 /* AppDelegate.m */,
-				CFBF84211CE3C94700021987 /* Main.storyboard */,
-				CFBF84241CE3C94800021987 /* Assets.xcassets */,
-				CFBF84261CE3C94800021987 /* LaunchScreen.storyboard */,
-				CFBF84291CE3C94800021987 /* Info.plist */,
+				CFFBDE5E1E734EC400B8128E /* Resources */,
 				CFBF84181CE3C94700021987 /* Supporting Files */,
 			);
 			path = SmartHome;
@@ -275,6 +268,19 @@
 				CFFBDE591E720F7C00B8128E /* NSArray+Enumerator.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		CFFBDE5E1E734EC400B8128E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CFBF841B1CE3C94700021987 /* AppDelegate.h */,
+				CFBF841C1CE3C94700021987 /* AppDelegate.m */,
+				CFBF84211CE3C94700021987 /* Main.storyboard */,
+				CFBF84241CE3C94800021987 /* Assets.xcassets */,
+				CFBF84261CE3C94800021987 /* LaunchScreen.storyboard */,
+				CFBF84291CE3C94800021987 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -549,6 +555,7 @@
 				CFBF84221CE3C94700021987 /* Base */,
 			);
 			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		CFBF84261CE3C94800021987 /* LaunchScreen.storyboard */ = {
@@ -557,6 +564,7 @@
 				CFBF84271CE3C94800021987 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

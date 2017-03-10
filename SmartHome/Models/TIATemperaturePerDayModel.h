@@ -16,7 +16,7 @@ extern NSString *const kTemperaturePDPublicIDKey;
 @property (nonatomic, strong) NSString *pulicID;
 @property (nonatomic, assign) NSInteger tempPerDay;
 
-- (instancetype)initWithPublicID:(NSString *)publicID andName:(NSInteger)tempPerDay;
+- (instancetype)initWithPublicID:(NSString *)publicID andTemperature:(NSInteger)tempPerDay;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

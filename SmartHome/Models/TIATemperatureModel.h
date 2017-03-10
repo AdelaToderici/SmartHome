@@ -29,17 +29,8 @@ extern NSString *const kThermostatStatusKey;
                           status:(BOOL)status
                  temperatureDays:(NSArray *)tempDaysArray;
 
-- (instancetype)initWithPublicID:(NSString *)publicID
-                     temperature:(NSString *)temperature
-                 temperatureType:(BOOL)tempType
-                          status:(BOOL)status;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
-- (instancetype)initWithDefaultDictionary:(NSDictionary *)dictionary;
-
-- (instancetype)initWithCustomDictionary:(NSDictionary *)dictionary;
-
-- (NSDictionary *)defaultDictionaryRepresentation;
-
-- (NSDictionary *)customDictionaryRepresentation;
+- (NSDictionary *)dictionaryRepresentation;
 
 @end

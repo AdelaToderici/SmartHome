@@ -13,7 +13,7 @@ NSString *const kTemperaturePerDayKey = @"tempPerDay";
 
 @implementation TIATemperaturePerDayModel
 
-- (instancetype)initWithPublicID:(NSString *)publicID andName:(NSInteger)tempPerDay {
+- (instancetype)initWithPublicID:(NSString *)publicID andTemperature:(NSInteger)tempPerDay {
     
     if (self = [super init]) {
         
@@ -27,13 +27,13 @@ NSString *const kTemperaturePerDayKey = @"tempPerDay";
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     
     return [self initWithPublicID:dictionary[kTemperaturePDPublicIDKey]
-                          andName:[self intFromString:dictionary[kTemperaturePerDayKey]]];
+                          andTemperature:[self intFromString:dictionary[kTemperaturePerDayKey]]];
 }
 
 - (NSDictionary *)dictionaryRepresentation {
     
     return @{ kTemperaturePDPublicIDKey : self.pulicID,
-              kTemperaturePerDayKey : [NSNumber numberWithInteger:self.tempPerDay] };
+              kTemperaturePerDayKey     : [NSNumber numberWithInteger:self.tempPerDay] };
 }
 
 #pragma mark - Helper Methods

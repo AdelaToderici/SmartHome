@@ -36,13 +36,4 @@ NSString *const kUserNameKey;
               kUserNameKey    : self.name };
 }
 
-- (NSString *)description {
-    
-    return [NSString stringWithFormat:@"<%@: 0x%x publicID=%@ name=%@>",
-            NSStringFromClass([self class]),
-            (unsigned int)self,
-            self.pulicID,
-            self.name];
-}
-
 @end

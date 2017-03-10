@@ -10,7 +10,7 @@
 
 @implementation NSArray (Enumerator)
 
-- (NSArray *)mappedArrayWithBlock:(id (^)(id))block {
+- (nullable NSArray *)mappedArrayWithBlock:(id (^)(id))block {
     
     NSMutableArray *mutableArray = [NSMutableArray arrayWithCapacity:self.count];
     

@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const kRoomModelPublicID;
+extern NSString *const kRoomModelColor;
+
 @interface TIARoomModel : NSObject
+
+@property (nonatomic, strong) NSString *pulicID;
+@property (nonatomic, assign) NSString *color;
+
+- (instancetype)initWithPublicID:(NSString *)publicID andColor:(NSString *)color;
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
+- (NSDictionary *)dictionaryRepresentation;
 
 @end
