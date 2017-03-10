@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *switchButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet UIView *graphContentView;
 
 @end
 
@@ -25,41 +26,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupUI];
+    
+    self.graphArray = @[@6, @9, @5, @7, @10, @8, @3, @6, @5, @9, @4, @6];
+    
+    self.graphView = [[GraphicView alloc]
+                      initWithFrame:CGRectMake(0, 0,
+                                               self.graphContentView.frame.size.width,
+                                               self.graphContentView.frame.size.height)];
+    self.graphView.backgroundColor = kClearColor;
+    [self.graphContentView addSubview:self.graphView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self drawGraphView];
+}
+
+#pragma mark - Private Methods
+
+- (void)setupUI {
     self.switchButton.layer.cornerRadius = kCornerRadius18;
     self.segmentedControl.layer.cornerRadius = kCornerRadius6;
     
     self.containerView.layer.borderColor = [kNavyBlueColor CGColor];
     self.containerView.layer.borderWidth = 1.0;
     self.containerView.layer.cornerRadius = kPointSize5;
-    
-    self.graphArray = @[@6, @9, @5, @7, @10, @8, @3, @6, @5, @9, @4, @6];
-    
-    self.graphView = [[GraphicView alloc]
-                      initWithFrame:CGRectMake(kMargin20,
-                                               kFrameSize86,
-                                               self.view.frame.size.width-kFrameSize40,
-                                               self.view.frame.size.height/kFrameDivision2_7)];
-    self.graphView.backgroundColor = kClearColor;
-    [self.view addSubview:self.graphView];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [self drawGraphView];
 }
 
 - (void)drawGraphView {
     _graphView.graphPoints = self.graphArray;
     [_graphView setNeedsDisplay];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

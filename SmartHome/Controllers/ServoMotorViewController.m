@@ -20,13 +20,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *RPMLabel;
-@property (weak, nonatomic) IBOutlet UILabel *TimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @property (nonatomic, strong) BublesView *bublesView;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSArray *segmentedArray;
 @property (nonatomic, strong) NSDate *startDate;
-@property (nonatomic, weak) NSTimer *timer;
+@property (nonatomic, weak)   NSTimer *timer;
 @property (nonatomic, assign) BOOL isRunning;
 @property (nonatomic, assign) NSInteger timeLeft;
 @property (nonatomic, assign) NSInteger initialTime;
@@ -46,6 +46,7 @@
 }
 
 - (void)setupBublesView {
+    
     self.bublesView = [[BublesView alloc]
                        initWithFrame:CGRectMake(0, kFrameSize70,
                                                 self.view.frame.size.width,
@@ -55,6 +56,7 @@
 }
 
 - (void)setupPickerView {
+    
     self.pickerView = [[UIPickerView alloc]
                        initWithFrame:CGRectMake(0, self.view.frame.size.height,
                                                 self.view.frame.size.width,
@@ -68,6 +70,7 @@
 }
 
 - (void)editUIComponents {
+    
     self.segmentedControl.layer.cornerRadius = kPointSize5;
     self.pickerView.layer.cornerRadius = kCornerRadius10;
     
@@ -77,6 +80,7 @@
 }
 
 - (void)setupPanGestureRecognizer {
+    
     UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc]
                                                     initWithTarget:self
                                                     action:@selector(moveViewWithGestureRecognizer:)];
@@ -84,10 +88,12 @@
 }
 
 - (void)moveViewWithGestureRecognizer:(UIPanGestureRecognizer *)recognizer {
+    
     [self hidePikerView];
 }
 
 - (void)showPickerView {
+    
     [self animatePickerViewWithValue:CGRectMake(0, self.view.frame.size.height/kFrameDivision1_45,
                                                 self.view.frame.size.width,
                                                 self.view.frame.size.height/kFrameDivision4_5)
@@ -95,6 +101,7 @@
 }
 
 - (void)hidePikerView {
+    
     [self animatePickerViewWithValue:CGRectMake(0,
                                                 self.view.frame.size.height,
                                                 self.view.frame.size.width,
@@ -103,6 +110,7 @@
 }
 
 - (void)animatePickerViewWithValue:(CGRect)frame andVelocity:(CGFloat)velocity {
+    
     [UIView animateWithDuration:1.0
                           delay:kDelay0_1
          usingSpringWithDamping:kVelocity18_5
@@ -115,6 +123,7 @@
 }
 
 - (IBAction)segmentedControlAction:(id)sender {
+    
     switch ((self.segmentedControl.selectedSegmentIndex)) {
         case 0:
             self.segmentedArray = @[@"30℃", @"40℃",@"60℃", @"95℃"];
@@ -129,6 +138,7 @@
         default:
             break;
     }
+    
     [self.pickerView reloadAllComponents];
     [self showPickerView];
 }
@@ -136,16 +146,20 @@
 - (IBAction)startAction:(id)sender {
     
     if([self.temperatureLabel.text isEqualToString:@"0"]||
-       [self.temperatureLabel.text isEqualToString:@"0"]||
-       [self.temperatureLabel.text isEqualToString:@"0"]) {
+       [self.RPMLabel.text isEqualToString:@"0"]||
+       [self.timeLabel.text isEqualToString:@"0"]) {
+        
         [self showAlert];
     } else {
+        
         [self startTimer];
     }
 }
 
 - (void)startTimer {
-    if(!self.isRunning){
+    
+    if(!self.isRunning) {
+        
         self.isRunning = true;
         self.segmentedControl.enabled = NO;
         [self calculateMachineStartTime];
@@ -153,12 +167,15 @@
         [self.startButton setTitle:@"Stop" forState:UIControlStateNormal];
         [self createTimer];
     } else {
+        
         [self showAlertView];
     }
 }
 
 - (void)createTimer {
+    
     if (self.timer == nil) {
+        
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                       target:self
                                                     selector:@selector(updateTimer)
@@ -168,17 +185,20 @@
 }
 
 - (void)updateTimer {
+    
     if (_timeLeft == 0) {
+        
         [self stopTimer];
     } else {
+        
         self.timeLeft--;
         self.remainingTimeLabel.text = [self formattedTime:self.timeLeft];
         self.progressBar.progress += (1.0/self.initialTime);
     }
-    
 }
 
 - (void)stopTimer {
+    
     self.isRunning = false;
     self.segmentedControl.enabled = YES;
     [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
@@ -191,6 +211,7 @@
 }
 
 - (NSString *)formattedTime:(NSInteger)totalSeconds {
+    
     NSInteger seconds = totalSeconds % kSeconds60;
     NSInteger minutes = (totalSeconds / kSeconds60) % kSeconds60;
     NSInteger hours = totalSeconds / kSeconds3600;
@@ -199,6 +220,7 @@
 }
 
 - (void)calculateMachineStartTime {
+    
     self.startDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"ro_RO"]];
@@ -209,7 +231,8 @@
 }
 
 - (void)calculateMachineEndTime {
-    NSString *newString = [[self.TimeLabel.text componentsSeparatedByCharactersInSet:
+    
+    NSString *newString = [[self.timeLabel.text componentsSeparatedByCharactersInSet:
                             [[NSCharacterSet decimalDigitCharacterSet] invertedSet]]
                            componentsJoinedByString:@""];
     self.timeLeft = [newString integerValue]*kSeconds60;
@@ -217,29 +240,35 @@
 }
 
 - (void)showAlert {
+    
     UIAlertController * alert = [UIComponents showAlertViewWithTitle:kWarningAlert
                                                              message:kMachineStartMessageAlert];
     [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)showAlertView {
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:kWarningAlert
                                                                              message:kMachineStopMessageAlert
                                                                       preferredStyle:UIAlertControllerStyleAlert];
+    
     [alertController addAction:[UIAlertAction actionWithTitle:kMachineStopConfirm
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action) {
         [self stopTimer];
     }]];
+    
     [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel"
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action) {
         [self closeAlertview];
     }]];
+    
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)closeAlertview {
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -247,8 +276,8 @@
 
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView
              attributedTitleForRow:(NSInteger)row
-                      forComponent:(NSInteger)component
-{
+                      forComponent:(NSInteger)component {
+    
     NSAttributedString *attributedString = [[NSAttributedString alloc]
                                             initWithString:self.segmentedArray[row]
                                             attributes:@{NSForegroundColorAttributeName:kNavyBlueColor}];
@@ -256,22 +285,28 @@
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    
     return 1;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    
     return self.segmentedArray.count;
 }
 
 #pragma mark - UIPickerViewDelegate
 
--(NSString*) pickerView:(UIPickerView*)pickerView titleForRow:(NSInteger)row
+-(NSString*) pickerView:(UIPickerView*)pickerView
+            titleForRow:(NSInteger)row
            forComponent:(NSInteger)component {
+    
     return self.segmentedArray[row];
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
+- (void)pickerView:(UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component {
+    
     switch ((self.segmentedControl.selectedSegmentIndex)) {
         case 0:
             self.temperatureLabel.text = self.segmentedArray[row];
@@ -280,7 +315,7 @@
             self.RPMLabel.text = self.segmentedArray[row];
             break;
         case 2:
-            self.TimeLabel.text = self.segmentedArray[row];
+            self.timeLabel.text = self.segmentedArray[row];
             break;
             
         default:

@@ -155,6 +155,9 @@
     linePath.lineWidth = 1.0;
     [linePath stroke];
     
+    CGColorSpaceRelease(colorSpace);
+    CGGradientRelease(gradient);
+    
     [self setupGraphicDisplay];
 }
 

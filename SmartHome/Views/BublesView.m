@@ -40,6 +40,9 @@
     CGPoint endPoint = CGPointMake(0, self.bounds.size.height);
     CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
     
+    CGColorSpaceRelease(colorSpace);
+    CGGradientRelease(gradient);
+    
     [self setupBublesImage];
     [self setupServoLabes];
 }
