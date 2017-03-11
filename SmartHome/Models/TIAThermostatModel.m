@@ -1,12 +1,12 @@
 //
-//  TIATemperatureModel.m
+//  TIAThermostatModel.m
 //  SmartHome
 //
 //  Created by Adela Toderici on 3/9/17.
 //  Copyright © 2017 Adela Toderici. All rights reserved.
 //
 
-#import "TIATemperatureModel.h"
+#import "TIAThermostatModel.h"
 
 #import "TIATemperaturePerDayModel.h"
 #import "NSArray+Enumerator.h"
@@ -17,7 +17,7 @@ NSString *const kTemperatureDaysKey = @"tempDays";
 NSString *const kTemperatureTypeKey = @"tempType";
 NSString *const kThermostatStatusKey = @"thermoStatus";
 
-@implementation TIATemperatureModel
+@implementation TIAThermostatModel
 
 - (instancetype)initWithPublicID:(NSString *)publicID
                      temperature:(NSString *)temperature
@@ -26,7 +26,7 @@ NSString *const kThermostatStatusKey = @"thermoStatus";
                  temperatureDays:(NSArray *)tempDaysArray {
     
     
-    if (self = [self init]) {
+    if ((self = [super init])) {
         
         self.publicID         = publicID;
         self.temperature      = temperature;

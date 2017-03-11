@@ -1,5 +1,5 @@
 //
-//  TIATemperatureModel.h
+//  TIAThermostatModel.h
 //  SmartHome
 //
 //  Created by Adela Toderici on 3/9/17.
@@ -15,7 +15,7 @@ extern NSString *const kTemperatureDaysKey;
 extern NSString *const kTemperatureTypeKey;
 extern NSString *const kThermostatStatusKey;
 
-@interface TIATemperatureModel : NSObject <TIASerializable>
+@interface TIAThermostatModel : NSObject <TIASerializable>
 
 @property (nonatomic, strong) NSString *publicID;
 @property (nonatomic, strong) NSString *temperature;

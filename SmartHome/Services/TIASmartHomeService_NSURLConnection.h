@@ -1,5 +1,5 @@
 //
-//  TIASmartHome_NSURLConnection.h
+//  TIASmartHomeService_NSURLConnection.h
 //  SmartHome
 //
 //  Created by Adela Toderici on 3/9/17.
@@ -13,6 +13,6 @@
  * An implementation of TIASmartHomeService using NSURLConnection
  */
 
-@interface TIASmartHome_NSURLConnection : TIASmartHomeService
+@interface TIASmartHomeService_NSURLConnection : TIASmartHomeService
 
 @end

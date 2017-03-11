@@ -241,7 +241,7 @@
 
 - (void)showAlert {
     
-    UIAlertController * alert = [UIComponents showAlertViewWithTitle:kWarningAlert
+    UIAlertController *alert = [UIComponents showAlertViewWithTitle:kWarningAlert
                                                              message:kMachineStartMessageAlert];
     [self presentViewController:alert animated:YES completion:nil];
 }

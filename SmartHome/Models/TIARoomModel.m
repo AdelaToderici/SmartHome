@@ -15,7 +15,7 @@ NSString *const kRoomModelColor = @"color";
 
 - (instancetype)initWithPublicID:(NSString *)publicID andColor:(NSString *)color {
     
-    if (self = [super init]) {
+    if ((self = [super init])) {
         
         self.pulicID = publicID;
         self.color = color;

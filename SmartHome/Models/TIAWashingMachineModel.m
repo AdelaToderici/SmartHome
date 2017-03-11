@@ -20,7 +20,7 @@ NSString *const kWashingMachineTime = @"time";
                              RPM:(NSInteger)RPM
                             time:(NSInteger)time {
     
-    if (self = [super init]) {
+    if ((self = [super init])) {
         
         self.pulicID = publicID;
         self.temperature = temperature;

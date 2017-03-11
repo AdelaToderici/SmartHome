@@ -15,7 +15,7 @@ NSString *const kTemperaturePerDayKey = @"tempPerDay";
 
 - (instancetype)initWithPublicID:(NSString *)publicID andTemperature:(NSInteger)tempPerDay {
     
-    if (self = [super init]) {
+    if ((self = [super init])) {
         
         self.pulicID = publicID;
         self.tempPerDay = tempPerDay;

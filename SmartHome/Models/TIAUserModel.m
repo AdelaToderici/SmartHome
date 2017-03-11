@@ -15,7 +15,7 @@ NSString *const kUserNameKey;
 
 - (instancetype)initWithPublicID:(NSString *)publicID andName:(NSString *)name {
     
-    if (self = [super init]) {
+    if ((self = [super init])) {
         
         self.pulicID = publicID;
         self.name    = name;
