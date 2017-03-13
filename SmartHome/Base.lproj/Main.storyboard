@@ -72,6 +72,9 @@
                                 <state key="normal" title="Switch On">
                                     <color key="titleColor" red="0.08848452708" green="0.24195830069999999" blue="0.40590945509999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="switchOnButtonPressed:" destination="lmy-4M-bsb" eventType="touchUpInside" id="TVd-O0-Bns"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

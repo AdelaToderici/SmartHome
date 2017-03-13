@@ -14,7 +14,8 @@
 
 NSString *const TIAServicePendingNotification = @"TIAServicePendingNotification";
 
-static NSString *const kLastServerRootKey = @"LastServerRoot";
+static NSString *const kServerRootKey = @"ServerURLRoot";
+static NSString *const kServerURLKey = @"http://localhost:3000";
 static NSString *const kUserModelKey = @"CurrentUser";
 static NSString *const kUserIdentifierKey = @"UserIdentifier";
 
@@ -50,9 +51,11 @@ static TIASmartHomeService *SharedInstance;
         self.requests = [NSMutableDictionary dictionary];
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *serverURLString = [defaults stringForKey:kLastServerRootKey];
+        NSString *serverURLString = [defaults stringForKey:kServerRootKey];
         if (serverURLString != nil) {
             self.serverRoot = [NSURL URLWithString:serverURLString];
+        } else {
+            [self persistServerRoot];
         }
         
         NSDictionary *userDictionary = [defaults objectForKey:kUserModelKey];
@@ -66,6 +69,15 @@ static TIASmartHomeService *SharedInstance;
 
 #pragma mark - TEST Api methods
 
+- (void)persistServerRoot
+{
+    self.serverRoot = [NSURL URLWithString:kServerURLKey];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:self.serverRoot.absoluteString forKey:kServerRootKey];
+    [defaults synchronize];
+}
+
 - (BOOL)isServerNonNil {
     
     return self.serverRoot != nil;
@@ -78,7 +90,9 @@ static TIASmartHomeService *SharedInstance;
     
     return [self submitGETPath:@"/thermostat"
                        success:^(NSData *data) {
-                           
+                           if (data == nil) {
+                               return;
+                           }
                            NSError *error = nil;
                            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
                            

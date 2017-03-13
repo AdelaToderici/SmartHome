@@ -10,6 +10,7 @@
 #import "BublesView.h"
 #import "Constants.h"
 #import "UIComponents.h"
+#import "TIASmartHomeService.h"
 
 @interface ServoMotorViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate>
 
@@ -47,7 +48,7 @@
     [self setupPanGestureRecognizer];
 }
 
-#pragma mark - IBAction Methods
+#pragma mark - Action Methods
 
 - (IBAction)segmentedControlAction:(id)sender {
     
@@ -76,11 +77,34 @@
        [self.RPMLabel.text isEqualToString:@"0"]||
        [self.timeLabel.text isEqualToString:@"0"]) {
         
-        [self showAlert];
+        [self showAlertWithTitle:kWarningAlert andText:kMachineStartMessageAlert];
     } else {
         
-        [self startTimer];
+        [self postMachineData];
     }
+}
+
+#pragma mark - Service Methods
+
+- (void)postMachineData {
+    
+    TIASmartHomeService *service = [TIASmartHomeService sharedInstance];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [service postWashingMachineDataWithTemperature:self.temperatureLabel.text
+                                               RPM:self.RPMLabel.text
+                                              time:self.timeLabel.text
+                                           success:^{
+                                               if (weakSelf) {
+                                                   __strong typeof(self) strongSelf = weakSelf;
+                                                   [strongSelf startTimer];
+                                               }
+                                               
+                                           } failure:^(NSError *error) {
+                                               [self showAlertWithTitle:@"Error"
+                                                                andText:@"The operation couldn't be completed"];
+                                           }];
 }
 
 #pragma mark - UIPickerView DataSource
@@ -136,10 +160,10 @@
 
 #pragma mark - AlertView Methods
 
-- (void)showAlert {
+- (void)showAlertWithTitle:(NSString *)title andText:(NSString *)text {
     
-    UIAlertController *alert = [UIComponents showAlertViewWithTitle:kWarningAlert
-                                                            message:kMachineStartMessageAlert];
+    UIAlertController *alert = [UIComponents showAlertViewWithTitle:title
+                                                            message:text];
     [self presentViewController:alert animated:YES completion:nil];
 }
 

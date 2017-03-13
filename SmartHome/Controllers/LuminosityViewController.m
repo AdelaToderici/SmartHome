@@ -9,6 +9,7 @@
 #import "LuminosityViewController.h"
 #import "Constants.h"
 #import "UIComponents.h"
+#import "TIASmartHomeService.h"
 
 @interface LuminosityViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -16,10 +17,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *switchOnButton;
 
 @property (nonatomic, strong) NSArray *colorArray;
+@property (nonatomic, assign) NSInteger colorIndex;
 
 @end
 
 @implementation LuminosityViewController
+
+#pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,9 +33,40 @@
     [UIComponents setupBorderView:self.switchOnButton];
 }
 
+#pragma mark - Action Methods
+
 - (IBAction)sliderValueChanged:(id)sender {
-    NSInteger colorIndex = (NSInteger)[self.colorArray objectAtIndex:(long)self.slider.value];
-    self.imageView.backgroundColor = UIColorFromRGB(colorIndex);
+    self.colorIndex = (NSInteger)[self.colorArray objectAtIndex:(long)self.slider.value];
+    self.imageView.backgroundColor = UIColorFromRGB(self.colorIndex);
+}
+
+- (IBAction)switchOnButtonPressed:(id)sender {
+    [self postRoomLightColor];
+}
+
+#pragma mark - Private methods
+
+- (void)postRoomLightColor {
+    
+    TIASmartHomeService *service = [TIASmartHomeService sharedInstance];
+    
+    if (service.serverRoot) {
+        __weak typeof(self) weakSelf = self;
+        [service postRoomDataWithColor:[NSString stringWithFormat:@"%li", (long)self.colorIndex]
+                               success:^{
+                                   [weakSelf showAlertWithTitle:@"Succeed" andText:@"Light room changed."];
+                               } failure:^(NSError *error) {
+                                   [weakSelf showAlertWithTitle:@"Error"
+                                                        andText:@"The operation couldn't be completed."];
+                               }];
+    }
+}
+
+- (void)showAlertWithTitle:(NSString *)title andText:(NSString *)text {
+    
+    UIAlertController *alert = [UIComponents showAlertViewWithTitle:title
+                                                            message:text];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end
