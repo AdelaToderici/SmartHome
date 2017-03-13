@@ -18,4 +18,8 @@
 @property (nonatomic, strong) NSURL *tempServerRoot;
 @property (nonatomic, strong, readonly) NSMutableDictionary *requests;
 
+- (NSMutableURLRequest *)requestForURL:(NSURL *)URL
+                                method:(NSString *)httpMethod
+                              bodyDict:(NSDictionary *)bodyDict;
+
 @end

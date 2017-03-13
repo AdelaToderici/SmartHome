@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ServoMotorViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate>
+@interface ServoMotorViewController : UIViewController 
 
 @end

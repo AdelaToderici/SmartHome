@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B8B1ECF7CC07C83E7A60230B /* Pods_SmartHomeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC6B3330C5583F798B77BFD /* Pods_SmartHomeTests.framework */; };
-		CFBF841A1CE3C94700021987 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBF84191CE3C94700021987 /* main.m */; };
-		CFBF841D1CE3C94700021987 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBF841C1CE3C94700021987 /* AppDelegate.m */; };
 		CFBF84231CE3C94700021987 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBF84211CE3C94700021987 /* Main.storyboard */; };
 		CFBF84251CE3C94800021987 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFBF84241CE3C94800021987 /* Assets.xcassets */; };
 		CFBF84281CE3C94800021987 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBF84261CE3C94800021987 /* LaunchScreen.storyboard */; };
@@ -22,14 +20,18 @@
 		CFDFAB201CE3ECCC00511441 /* GraphicView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDFAB1D1CE3ECCC00511441 /* GraphicView.m */; };
 		CFF7C4F91CE4CC8A0026540E /* BublesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF7C4F81CE4CC8A0026540E /* BublesView.m */; };
 		CFFBDE421E71F56100B8128E /* TIASmartHomeService.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE411E71F56100B8128E /* TIASmartHomeService.m */; };
-		CFFBDE451E71F5FA00B8128E /* TIASmartHomeService_NSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE441E71F5FA00B8128E /* TIASmartHomeService_NSURLConnection.m */; };
 		CFFBDE481E71F94E00B8128E /* TIAUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE471E71F94E00B8128E /* TIAUserModel.m */; };
 		CFFBDE4B1E71F9A600B8128E /* TIAThermostatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE4A1E71F9A600B8128E /* TIAThermostatModel.m */; };
 		CFFBDE4F1E71F9DC00B8128E /* TIARoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE4E1E71F9DC00B8128E /* TIARoomModel.m */; };
 		CFFBDE521E71FA0800B8128E /* TIAWashingMachineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE511E71FA0800B8128E /* TIAWashingMachineModel.m */; };
 		CFFBDE5A1E720F7C00B8128E /* NSArray+Enumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE591E720F7C00B8128E /* NSArray+Enumerator.m */; };
 		CFFBDE5D1E7214B900B8128E /* TIATemperaturePerDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE5C1E7214B900B8128E /* TIATemperaturePerDayModel.m */; };
-		CFFBDE611E7450CB00B8128E /* TIASmartHomeService_NSURLConnectionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE601E7450CB00B8128E /* TIASmartHomeService_NSURLConnectionRequest.m */; };
+		CFFBDE671E747B0B00B8128E /* TIASmartHomeService_NSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE661E747B0B00B8128E /* TIASmartHomeService_NSURLSession.m */; };
+		CFFBDE6A1E747D5300B8128E /* TIASmartHomeService_NSURLSessionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE691E747D5300B8128E /* TIASmartHomeService_NSURLSessionRequest.m */; };
+		CFFBDE701E74993A00B8128E /* NSHTTPURLResponse+SmartHomeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE6F1E74993A00B8128E /* NSHTTPURLResponse+SmartHomeExtensions.m */; };
+		CFFBDE751E77451900B8128E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE721E77451900B8128E /* AppDelegate.m */; };
+		CFFBDE7B1E7745C200B8128E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE7A1E7745C200B8128E /* main.m */; };
+		CFFBDE7D1E77464A00B8128E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFFBDE7C1E77464A00B8128E /* Info.plist */; };
 		F29D058BDD208536D5BC2906 /* Pods_SmartHomeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A2D536C38CFDD048F55D152 /* Pods_SmartHomeUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,13 +57,9 @@
 		7A2D536C38CFDD048F55D152 /* Pods_SmartHomeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartHomeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC6B3330C5583F798B77BFD /* Pods_SmartHomeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartHomeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBF84151CE3C94700021987 /* SmartHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CFBF84191CE3C94700021987 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CFBF841B1CE3C94700021987 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
-		CFBF841C1CE3C94700021987 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../AppDelegate.m; sourceTree = "<group>"; };
 		CFBF84221CE3C94700021987 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CFBF84241CE3C94800021987 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		CFBF84271CE3C94800021987 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CFBF84291CE3C94800021987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		CFBF842E1CE3C94800021987 /* SmartHomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartHomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBF84321CE3C94800021987 /* SmartHomeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartHomeTests.m; sourceTree = "<group>"; };
 		CFBF84341CE3C94800021987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,8 +81,6 @@
 		CFF7C4F81CE4CC8A0026540E /* BublesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BublesView.m; sourceTree = "<group>"; };
 		CFFBDE401E71F56100B8128E /* TIASmartHomeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIASmartHomeService.h; sourceTree = "<group>"; };
 		CFFBDE411E71F56100B8128E /* TIASmartHomeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIASmartHomeService.m; sourceTree = "<group>"; };
-		CFFBDE431E71F5FA00B8128E /* TIASmartHomeService_NSURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIASmartHomeService_NSURLConnection.h; sourceTree = "<group>"; };
-		CFFBDE441E71F5FA00B8128E /* TIASmartHomeService_NSURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIASmartHomeService_NSURLConnection.m; sourceTree = "<group>"; };
 		CFFBDE461E71F94E00B8128E /* TIAUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIAUserModel.h; sourceTree = "<group>"; };
 		CFFBDE471E71F94E00B8128E /* TIAUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIAUserModel.m; sourceTree = "<group>"; };
 		CFFBDE491E71F9A600B8128E /* TIAThermostatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIAThermostatModel.h; sourceTree = "<group>"; };
@@ -98,9 +94,17 @@
 		CFFBDE591E720F7C00B8128E /* NSArray+Enumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Enumerator.m"; path = "Categories/NSArray+Enumerator.m"; sourceTree = "<group>"; };
 		CFFBDE5B1E7214B900B8128E /* TIATemperaturePerDayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIATemperaturePerDayModel.h; sourceTree = "<group>"; };
 		CFFBDE5C1E7214B900B8128E /* TIATemperaturePerDayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIATemperaturePerDayModel.m; sourceTree = "<group>"; };
-		CFFBDE5F1E7450CB00B8128E /* TIASmartHomeService_NSURLConnectionRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIASmartHomeService_NSURLConnectionRequest.h; sourceTree = "<group>"; };
-		CFFBDE601E7450CB00B8128E /* TIASmartHomeService_NSURLConnectionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIASmartHomeService_NSURLConnectionRequest.m; sourceTree = "<group>"; };
 		CFFBDE621E74524B00B8128E /* TIASmartHomeService_SubclassMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIASmartHomeService_SubclassMethods.h; sourceTree = "<group>"; };
+		CFFBDE651E747B0B00B8128E /* TIASmartHomeService_NSURLSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIASmartHomeService_NSURLSession.h; sourceTree = "<group>"; };
+		CFFBDE661E747B0B00B8128E /* TIASmartHomeService_NSURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIASmartHomeService_NSURLSession.m; sourceTree = "<group>"; };
+		CFFBDE681E747D5300B8128E /* TIASmartHomeService_NSURLSessionRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIASmartHomeService_NSURLSessionRequest.h; sourceTree = "<group>"; };
+		CFFBDE691E747D5300B8128E /* TIASmartHomeService_NSURLSessionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIASmartHomeService_NSURLSessionRequest.m; sourceTree = "<group>"; };
+		CFFBDE6E1E74993A00B8128E /* NSHTTPURLResponse+SmartHomeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSHTTPURLResponse+SmartHomeExtensions.h"; sourceTree = "<group>"; };
+		CFFBDE6F1E74993A00B8128E /* NSHTTPURLResponse+SmartHomeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSHTTPURLResponse+SmartHomeExtensions.m"; sourceTree = "<group>"; };
+		CFFBDE711E77451900B8128E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CFFBDE721E77451900B8128E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CFFBDE7A1E7745C200B8128E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CFFBDE7C1E77464A00B8128E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,7 @@
 				CFDFAAFD1CE3E92700511441 /* Views */,
 				CFBF844B1CE3CADE00021987 /* Controllers */,
 				CFFBDE5E1E734EC400B8128E /* Resources */,
+				CFFBDE7C1E77464A00B8128E /* Info.plist */,
 				CFBF84181CE3C94700021987 /* Supporting Files */,
 			);
 			path = SmartHome;
@@ -179,9 +184,9 @@
 		CFBF84181CE3C94700021987 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CFBF84191CE3C94700021987 /* main.m */,
+				CFFBDE7A1E7745C200B8128E /* main.m */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		CFBF84311CE3C94800021987 /* SmartHomeTests */ = {
@@ -257,13 +262,15 @@
 		CFFBDE3F1E71F4BA00B8128E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				CFFBDE6E1E74993A00B8128E /* NSHTTPURLResponse+SmartHomeExtensions.h */,
+				CFFBDE6F1E74993A00B8128E /* NSHTTPURLResponse+SmartHomeExtensions.m */,
 				CFFBDE401E71F56100B8128E /* TIASmartHomeService.h */,
 				CFFBDE411E71F56100B8128E /* TIASmartHomeService.m */,
-				CFFBDE431E71F5FA00B8128E /* TIASmartHomeService_NSURLConnection.h */,
-				CFFBDE441E71F5FA00B8128E /* TIASmartHomeService_NSURLConnection.m */,
-				CFFBDE5F1E7450CB00B8128E /* TIASmartHomeService_NSURLConnectionRequest.h */,
-				CFFBDE601E7450CB00B8128E /* TIASmartHomeService_NSURLConnectionRequest.m */,
 				CFFBDE621E74524B00B8128E /* TIASmartHomeService_SubclassMethods.h */,
+				CFFBDE651E747B0B00B8128E /* TIASmartHomeService_NSURLSession.h */,
+				CFFBDE661E747B0B00B8128E /* TIASmartHomeService_NSURLSession.m */,
+				CFFBDE681E747D5300B8128E /* TIASmartHomeService_NSURLSessionRequest.h */,
+				CFFBDE691E747D5300B8128E /* TIASmartHomeService_NSURLSessionRequest.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -280,12 +287,11 @@
 		CFFBDE5E1E734EC400B8128E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CFBF841B1CE3C94700021987 /* AppDelegate.h */,
-				CFBF841C1CE3C94700021987 /* AppDelegate.m */,
+				CFFBDE711E77451900B8128E /* AppDelegate.h */,
+				CFFBDE721E77451900B8128E /* AppDelegate.m */,
 				CFBF84211CE3C94700021987 /* Main.storyboard */,
 				CFBF84241CE3C94800021987 /* Assets.xcassets */,
 				CFBF84261CE3C94800021987 /* LaunchScreen.storyboard */,
-				CFBF84291CE3C94800021987 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -400,6 +406,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFFBDE7D1E77464A00B8128E /* Info.plist in Resources */,
 				CFBF84281CE3C94800021987 /* LaunchScreen.storyboard in Resources */,
 				CFBF84251CE3C94800021987 /* Assets.xcassets in Resources */,
 				CFBF84231CE3C94700021987 /* Main.storyboard in Resources */,
@@ -507,20 +514,21 @@
 			files = (
 				CFDFAB201CE3ECCC00511441 /* GraphicView.m in Sources */,
 				CFFBDE5A1E720F7C00B8128E /* NSArray+Enumerator.m in Sources */,
+				CFFBDE751E77451900B8128E /* AppDelegate.m in Sources */,
 				CFDFAB051CE3E9AC00511441 /* ServoMotorViewController.m in Sources */,
-				CFFBDE611E7450CB00B8128E /* TIASmartHomeService_NSURLConnectionRequest.m in Sources */,
+				CFFBDE6A1E747D5300B8128E /* TIASmartHomeService_NSURLSessionRequest.m in Sources */,
 				CFFBDE4F1E71F9DC00B8128E /* TIARoomModel.m in Sources */,
-				CFBF841D1CE3C94700021987 /* AppDelegate.m in Sources */,
 				CFFBDE5D1E7214B900B8128E /* TIATemperaturePerDayModel.m in Sources */,
+				CFFBDE701E74993A00B8128E /* NSHTTPURLResponse+SmartHomeExtensions.m in Sources */,
 				CFDFAB061CE3E9AC00511441 /* TemperatureViewController.m in Sources */,
-				CFFBDE451E71F5FA00B8128E /* TIASmartHomeService_NSURLConnection.m in Sources */,
 				CFFBDE521E71FA0800B8128E /* TIAWashingMachineModel.m in Sources */,
 				CFF7C4F91CE4CC8A0026540E /* BublesView.m in Sources */,
 				CFDD6BC21D2D47E9005D42BD /* UIComponents.m in Sources */,
-				CFBF841A1CE3C94700021987 /* main.m in Sources */,
 				CFFBDE421E71F56100B8128E /* TIASmartHomeService.m in Sources */,
 				CFFBDE4B1E71F9A600B8128E /* TIAThermostatModel.m in Sources */,
+				CFFBDE671E747B0B00B8128E /* TIASmartHomeService_NSURLSession.m in Sources */,
 				CFDFAB041CE3E9AC00511441 /* LuminosityViewController.m in Sources */,
+				CFFBDE7B1E7745C200B8128E /* main.m in Sources */,
 				CFFBDE481E71F94E00B8128E /* TIAUserModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

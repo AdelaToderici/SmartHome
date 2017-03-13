@@ -11,6 +11,8 @@
 @class TIAThermostatModel;
 @class TIAUserModel;
 
+extern NSString *const TIAServicePendingNotification;
+
 typedef void (^TIASmartHomeServiceSuccess)(NSData *data);
 typedef void (^TIASmartHomeServiceFailure)(NSError *error);
 
@@ -48,9 +50,6 @@ typedef void (^TIASmartHomeServiceFailure)(NSError *error);
                                                time:(NSString *)time
                                             success:(void(^)())success
                                             failure:(TIASmartHomeServiceFailure)failure;
-#pragma mark - Cancel Request
-
-- (void)cancelRequestWithIdentifier:(NSString *)identifier;
 
 @end
 
@@ -65,6 +64,6 @@ typedef void (^TIASmartHomeServiceFailure)(NSError *error);
 
 - (void)cancelRequestWithIdentifier:(NSString *)identifier;
 
-- (void)resendRequestsPendingAuthentication;
+- (void)resendRequestsPending;
 
 @end

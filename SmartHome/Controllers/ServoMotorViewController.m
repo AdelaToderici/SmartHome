@@ -11,7 +11,7 @@
 #import "Constants.h"
 #import "UIComponents.h"
 
-@interface ServoMotorViewController ()
+@interface ServoMotorViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
@@ -35,6 +35,8 @@
 
 @implementation ServoMotorViewController
 
+#pragma mark - View Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -45,86 +47,11 @@
     [self setupPanGestureRecognizer];
 }
 
-- (void)setupBublesView {
-    
-    self.bublesView = [[BublesView alloc]
-                       initWithFrame:CGRectMake(0, kFrameSize70,
-                                                self.view.frame.size.width,
-                                                self.view.frame.size.height/kFrameDivision3_5)];
-    self.bublesView.backgroundColor = kClearColor;
-    [self.view addSubview:self.bublesView];
-}
-
-- (void)setupPickerView {
-    
-    self.pickerView = [[UIPickerView alloc]
-                       initWithFrame:CGRectMake(0, self.view.frame.size.height,
-                                                self.view.frame.size.width,
-                                                self.view.frame.size.height/kFrameDivision4_5)];
-    self.pickerView.showsSelectionIndicator = YES;
-    self.pickerView.backgroundColor = kPaleTurquoiseColor;
-    self.pickerView.hidden = NO;
-    self.pickerView.dataSource = self;
-    self.pickerView.delegate = self;
-    [self.view addSubview:self.pickerView];
-}
-
-- (void)editUIComponents {
-    
-    self.segmentedControl.layer.cornerRadius = kPointSize5;
-    self.pickerView.layer.cornerRadius = kCornerRadius10;
-    
-    self.startButton.layer.borderColor = [kNavyBlueColor CGColor];
-    self.startButton.layer.cornerRadius = kCornerRadius28;
-    self.startButton.layer.borderWidth = 1.0;
-}
-
-- (void)setupPanGestureRecognizer {
-    
-    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc]
-                                                    initWithTarget:self
-                                                    action:@selector(moveViewWithGestureRecognizer:)];
-    [self.view addGestureRecognizer:panGestureRecognizer];
-}
-
-- (void)moveViewWithGestureRecognizer:(UIPanGestureRecognizer *)recognizer {
-    
-    [self hidePikerView];
-}
-
-- (void)showPickerView {
-    
-    [self animatePickerViewWithValue:CGRectMake(0, self.view.frame.size.height/kFrameDivision1_45,
-                                                self.view.frame.size.width,
-                                                self.view.frame.size.height/kFrameDivision4_5)
-                         andVelocity:kVelocity15_5];
-}
-
-- (void)hidePikerView {
-    
-    [self animatePickerViewWithValue:CGRectMake(0,
-                                                self.view.frame.size.height,
-                                                self.view.frame.size.width,
-                                                self.view.frame.size.height/kFrameDivision4_5)
-                         andVelocity:kVelocity3_5];
-}
-
-- (void)animatePickerViewWithValue:(CGRect)frame andVelocity:(CGFloat)velocity {
-    
-    [UIView animateWithDuration:1.0
-                          delay:kDelay0_1
-         usingSpringWithDamping:kVelocity18_5
-          initialSpringVelocity:velocity
-                        options:UIViewAnimationOptionTransitionCrossDissolve
-                     animations:^{
-                         self.pickerView.frame = frame;
-                     }
-                     completion:nil];
-}
+#pragma mark - IBAction Methods
 
 - (IBAction)segmentedControlAction:(id)sender {
     
-    switch ((self.segmentedControl.selectedSegmentIndex)) {
+    switch (self.segmentedControl.selectedSegmentIndex) {
         case 0:
             self.segmentedArray = @[@"30℃", @"40℃",@"60℃", @"95℃"];
             break;
@@ -132,7 +59,7 @@
             self.segmentedArray = @[@"600", @"900", @"1200", @"1800", @"2000", @"2200"];
             break;
         case 2:
-            self.segmentedArray = @[@"3m", @"10m", @"20m", @"30m", @"40m", @"50m"];
+            self.segmentedArray = @[@"3 min", @"10 min", @"20 min", @"30 min", @"40 min", @"50 min"];
             break;
             
         default:
@@ -154,122 +81,6 @@
         
         [self startTimer];
     }
-}
-
-- (void)startTimer {
-    
-    if(!self.isRunning) {
-        
-        self.isRunning = true;
-        self.segmentedControl.enabled = NO;
-        [self calculateMachineStartTime];
-        [self calculateMachineEndTime];
-        [self.startButton setTitle:@"Stop" forState:UIControlStateNormal];
-        [self createTimer];
-    } else {
-        
-        [self showAlertView];
-    }
-}
-
-- (void)createTimer {
-    
-    if (self.timer == nil) {
-        
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                                      target:self
-                                                    selector:@selector(updateTimer)
-                                                    userInfo:nil
-                                                     repeats:YES];
-    }
-}
-
-- (void)updateTimer {
-    
-    if (_timeLeft == 0) {
-        
-        [self stopTimer];
-    } else {
-        
-        self.timeLeft--;
-        self.remainingTimeLabel.text = [self formattedTime:self.timeLeft];
-        self.progressBar.progress += (1.0/self.initialTime);
-    }
-}
-
-- (void)stopTimer {
-    
-    self.isRunning = false;
-    self.segmentedControl.enabled = YES;
-    [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
-    self.startTimeLabel.text = kBasicTime;
-    self.remainingTimeLabel.text = kBasicTime;
-    self.progressBar.trackTintColor = kNavyBlueColor;
-    self.progressBar.progress = 0.0;
-    [self.timer invalidate];
-    self.timer = nil;
-}
-
-- (NSString *)formattedTime:(NSInteger)totalSeconds {
-    
-    NSInteger seconds = totalSeconds % kSeconds60;
-    NSInteger minutes = (totalSeconds / kSeconds60) % kSeconds60;
-    NSInteger hours = totalSeconds / kSeconds3600;
-    
-    return [NSString stringWithFormat:@"%02ld:%02ld:%02ld",(long)hours, (long)minutes, (long)seconds];
-}
-
-- (void)calculateMachineStartTime {
-    
-    self.startDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"ro_RO"]];
-    [dateFormatter setDateFormat:@"HH:mm:ss"];
-    NSString *dateString = [dateFormatter stringFromDate:self.startDate];
-    
-    self.startTimeLabel.text = dateString;
-}
-
-- (void)calculateMachineEndTime {
-    
-    NSString *newString = [[self.timeLabel.text componentsSeparatedByCharactersInSet:
-                            [[NSCharacterSet decimalDigitCharacterSet] invertedSet]]
-                           componentsJoinedByString:@""];
-    self.timeLeft = [newString integerValue]*kSeconds60;
-    self.initialTime = self.timeLeft;
-}
-
-- (void)showAlert {
-    
-    UIAlertController *alert = [UIComponents showAlertViewWithTitle:kWarningAlert
-                                                             message:kMachineStartMessageAlert];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (void)showAlertView {
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:kWarningAlert
-                                                                             message:kMachineStopMessageAlert
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:kMachineStopConfirm
-                                                        style:UIAlertActionStyleDefault
-                                                      handler:^(UIAlertAction *action) {
-        [self stopTimer];
-    }]];
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel"
-                                                        style:UIAlertActionStyleDefault
-                                                      handler:^(UIAlertAction *action) {
-        [self closeAlertview];
-    }]];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
-}
-
-- (void)closeAlertview {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIPickerView DataSource
@@ -321,6 +132,205 @@
         default:
             break;
     }
+}
+
+#pragma mark - AlertView Methods
+
+- (void)showAlert {
+    
+    UIAlertController *alert = [UIComponents showAlertViewWithTitle:kWarningAlert
+                                                            message:kMachineStartMessageAlert];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)showAlertView {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:kWarningAlert
+                                                                             message:kMachineStopMessageAlert
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:kMachineStopConfirm
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                          [self stopTimer];
+                                                      }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                          [self closeAlertview];
+                                                      }]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)closeAlertview {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Private UI Methods
+
+- (void)setupBublesView {
+    
+    self.bublesView = [[BublesView alloc]
+                       initWithFrame:CGRectMake(0, kNavBarHeight,
+                                                self.view.frame.size.width,
+                                                self.view.frame.size.height/kFrameDivision3_5)];
+    self.bublesView.backgroundColor = kClearColor;
+    [self.view addSubview:self.bublesView];
+}
+
+- (void)setupPickerView {
+    
+    self.pickerView = [[UIPickerView alloc]
+                       initWithFrame:CGRectMake(0, self.view.frame.size.height,
+                                                self.view.frame.size.width,
+                                                self.view.frame.size.height/kFrameDivision4_5)];
+    self.pickerView.showsSelectionIndicator = YES;
+    self.pickerView.backgroundColor = kPaleTurquoiseColor;
+    self.pickerView.hidden = NO;
+    self.pickerView.dataSource = self;
+    self.pickerView.delegate = self;
+    [self.view addSubview:self.pickerView];
+}
+
+- (void)editUIComponents {
+    
+    self.segmentedControl.layer.cornerRadius = kPointSize5;
+    self.pickerView.layer.cornerRadius = kCornerRadius10;
+    
+    [UIComponents setupBorderView:self.startButton];
+}
+
+- (void)setupPanGestureRecognizer {
+    
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc]
+                                                    initWithTarget:self
+                                                    action:@selector(moveViewWithGestureRecognizer:)];
+    [self.view addGestureRecognizer:panGestureRecognizer];
+}
+
+- (void)createTimer {
+    
+    if (self.timer == nil) {
+        
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                      target:self
+                                                    selector:@selector(updateTimer)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    }
+}
+
+#pragma mark - Private UI Helpers
+
+- (void)moveViewWithGestureRecognizer:(UIPanGestureRecognizer *)recognizer {
+    
+    [self hidePikerView];
+}
+
+- (void)showPickerView {
+    
+    [self animatePickerViewWithValue:CGRectMake(0, self.view.frame.size.height/kFrameDivision1_45,
+                                                self.view.frame.size.width,
+                                                self.view.frame.size.height/kFrameDivision4_5)
+                         andVelocity:kVelocity15_5];
+}
+
+- (void)hidePikerView {
+    
+    [self animatePickerViewWithValue:CGRectMake(0,
+                                                self.view.frame.size.height,
+                                                self.view.frame.size.width,
+                                                self.view.frame.size.height/kFrameDivision4_5)
+                         andVelocity:kVelocity3_5];
+}
+
+- (void)animatePickerViewWithValue:(CGRect)frame andVelocity:(CGFloat)velocity {
+    
+    [UIView animateWithDuration:1.0
+                          delay:kDelay0_1
+         usingSpringWithDamping:kVelocity18_5
+          initialSpringVelocity:velocity
+                        options:UIViewAnimationOptionTransitionCrossDissolve
+                     animations:^{
+                         self.pickerView.frame = frame;
+                     }
+                     completion:nil];
+}
+
+- (void)startTimer {
+    
+    if(!self.isRunning) {
+        
+        self.isRunning = true;
+        self.segmentedControl.enabled = NO;
+        [self calculateMachineStartTime];
+        [self calculateMachineEndTime];
+        [self.startButton setTitle:@"Stop" forState:UIControlStateNormal];
+        [self createTimer];
+    } else {
+        
+        [self showAlertView];
+    }
+}
+
+- (void)updateTimer {
+    
+    if (_timeLeft == 0) {
+        
+        [self stopTimer];
+    } else {
+        
+        self.timeLeft--;
+        self.remainingTimeLabel.text = [self formattedTime:self.timeLeft];
+        self.progressBar.progress += (1.0/self.initialTime);
+    }
+}
+
+- (void)stopTimer {
+    
+    self.isRunning = false;
+    self.segmentedControl.enabled = YES;
+    [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
+    self.startTimeLabel.text = kBasicTime;
+    self.remainingTimeLabel.text = kBasicTime;
+    self.progressBar.trackTintColor = kNavyBlueColor;
+    self.progressBar.progress = 0.0;
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
+#pragma mark - Private Methods
+
+- (NSString *)formattedTime:(NSInteger)totalSeconds {
+    
+    NSInteger seconds = totalSeconds % kSeconds60;
+    NSInteger minutes = (totalSeconds / kSeconds60) % kSeconds60;
+    NSInteger hours = totalSeconds / kSeconds3600;
+    
+    return [NSString stringWithFormat:@"%02ld:%02ld:%02ld",(long)hours, (long)minutes, (long)seconds];
+}
+
+- (void)calculateMachineStartTime {
+    
+    self.startDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"ro_RO"]];
+    [dateFormatter setDateFormat:@"HH:mm:ss"];
+    NSString *dateString = [dateFormatter stringFromDate:self.startDate];
+    
+    self.startTimeLabel.text = dateString;
+}
+
+- (void)calculateMachineEndTime {
+    
+    NSString *newString = [[self.timeLabel.text componentsSeparatedByCharactersInSet:
+                            [[NSCharacterSet decimalDigitCharacterSet] invertedSet]]
+                           componentsJoinedByString:@""];
+    self.timeLeft = [newString integerValue]*kSeconds60;
+    self.initialTime = self.timeLeft;
 }
 
 @end

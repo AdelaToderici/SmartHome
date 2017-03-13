@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIView *graphContentView;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @property (nonatomic, strong) TIAThermostatModel *thermostatModel;
 
@@ -49,10 +50,8 @@
 - (void)setupUI {
     self.switchButton.layer.cornerRadius = kCornerRadius18;
     self.segmentedControl.layer.cornerRadius = kCornerRadius6;
-    
-    self.containerView.layer.borderColor = [kNavyBlueColor CGColor];
-    self.containerView.layer.borderWidth = 1.0;
-    self.containerView.layer.cornerRadius = kPointSize5;
+    [UIComponents setupBorderView:self.submitButton];
+    [UIComponents setupBorderView:self.containerView];
 }
 
 - (void)drawGraphView {

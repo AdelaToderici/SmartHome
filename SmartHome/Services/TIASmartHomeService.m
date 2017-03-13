@@ -7,10 +7,12 @@
 //
 
 #import "TIASmartHomeService.h"
-#import "TIASmartHomeService_NSURLConnection.h"
 #import "TIAUserModel.h"
 #import "TIAThermostatModel.h"
 #import "NSArray+Enumerator.h"
+#import "TIASmartHomeService_NSURLSession.h"
+
+NSString *const TIAServicePendingNotification = @"TIAServicePendingNotification";
 
 static NSString *const kLastServerRootKey = @"LastServerRoot";
 static NSString *const kUserModelKey = @"CurrentUser";
@@ -35,7 +37,7 @@ static TIASmartHomeService *SharedInstance;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        SharedInstance = [[TIASmartHomeService_NSURLConnection alloc] init];
+        SharedInstance = [[TIASmartHomeService_NSURLSession alloc] init];
     });
     
     return SharedInstance;
@@ -246,6 +248,43 @@ static TIASmartHomeService *SharedInstance;
                        expectedStatus:expectedStatus
                               success:success
                               failure:failure];
+}
+
+#pragma mark - Private helpers
+
+- (NSMutableURLRequest *)requestForURL:(NSURL *)URL
+                                method:(NSString *)httpMethod
+                              bodyDict:(NSDictionary *)bodyDict {
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    [request setHTTPMethod:httpMethod];
+    
+    // HTTP body content is encoded
+    if (bodyDict) {
+        
+        [request setHTTPBody:[self formEncodedParameters:bodyDict]];
+        [request addValue:@"application/x-www-form-urlencoded"
+       forHTTPHeaderField:@"Content-Type"];
+    }
+    
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    return request;
+}
+
+- (NSData *)formEncodedParameters:(NSDictionary *)parameters {
+    
+    NSCharacterSet *set = [NSCharacterSet URLHostAllowedCharacterSet];
+    NSArray *pairs = [parameters.allKeys mappedArrayWithBlock:^id(id obj) {
+        
+        return [NSString stringWithFormat:@"%@=%@",
+                [obj stringByAddingPercentEncodingWithAllowedCharacters:set],
+                [parameters[obj] stringByAddingPercentEncodingWithAllowedCharacters:set]];
+    }];
+    
+    NSString *formBody = [pairs componentsJoinedByString:@"&"];
+    
+    return [formBody dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 @end

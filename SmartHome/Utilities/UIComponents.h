@@ -23,4 +23,6 @@
 + (UIAlertController *)showAlertViewWithTitle:(NSString *)title
                                       message:(NSString *)message;
 
++ (void)setupBorderView:(UIView *)view;
+
 @end

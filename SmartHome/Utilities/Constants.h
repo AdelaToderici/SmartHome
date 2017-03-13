@@ -40,7 +40,7 @@
 #define kFrameSize83 83
 #define kFrameSize124 124
 #define kFrameSize86 86
-#define kFrameSize70 70
+#define kNavBarHeight 64
 #define kFrameSize8 8.0
 
 #define kFrameDivision3_5 3.5

@@ -7,6 +7,7 @@
 //
 
 #import "UIComponents.h"
+#import "Constants.h"
 
 @implementation UIComponents
 
@@ -42,6 +43,13 @@
                                                handler:nil];
     [alert addAction:ok];
     return alert;
+}
+
++ (void)setupBorderView:(UIView *)view {
+    
+    view.layer.borderColor = [kNavyBlueColor CGColor];
+    view.layer.borderWidth = 1.0;
+    view.layer.cornerRadius = kPointSize5;
 }
 
 @end
