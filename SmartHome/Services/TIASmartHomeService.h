@@ -22,8 +22,6 @@ typedef void (^TIASmartHomeServiceFailure)(NSError *error);
 
 + (TIASmartHomeService *)sharedInstance;
 
-#pragma mark - TEST Api methods
-
 - (NSURL *)serverRoot;
 
 #pragma mark - Thermostat methods

@@ -57,7 +57,7 @@ NSString *const kThermostatStatusKey = @"thermoStatus";
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     
     NSArray *daysFromDictionary = [dictionary[kTemperatureDaysKey] mappedArrayWithBlock:^id(id obj) {
-        return [[TIATemperaturePerDayModel alloc] initWithDictionary:obj];
+        return obj;
     }];
     
     return [self initWithPublicID:dictionary[kTemperaturePulicIDkey]
@@ -70,7 +70,7 @@ NSString *const kThermostatStatusKey = @"thermoStatus";
 - (NSDictionary *)dictionaryRepresentation {
     
     NSArray *daysFromDictionary = [self.tempDaysArray mappedArrayWithBlock:^id(id obj) {
-        return [[TIATemperaturePerDayModel alloc] initWithDictionary:obj];
+        return obj;
     }];
     
     return @{ kTemperaturePulicIDkey : self.publicID,

@@ -15,14 +15,15 @@
 
 @interface TemperatureViewController ()
 
-@property (strong, nonatomic) GraphicView *graphView;
-@property (nonatomic, strong) NSArray *graphArray;
 @property (weak, nonatomic) IBOutlet UISwitch *switchButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIView *graphContentView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 
+@property (strong, nonatomic) GraphicView *graphView;
+@property (nonatomic, strong) NSArray *graphArray;
 @property (nonatomic, strong) TIAThermostatModel *thermostatModel;
 
 @end
@@ -45,7 +46,7 @@
     [self drawGraphView];
 }
 
-#pragma mark - Private UI helpers
+#pragma mark - Private UI methods
 
 - (void)setupUI {
     self.switchButton.layer.cornerRadius = kCornerRadius18;
@@ -55,8 +56,8 @@
 }
 
 - (void)drawGraphView {
-    _graphView.graphPoints = self.graphArray;
-    [_graphView setNeedsDisplay];
+    self.graphView.graphPoints = self.graphArray;
+    [self.graphView setNeedsDisplay];
 }
 
 - (void)setupGraphView {
@@ -71,7 +72,13 @@
 }
 
 - (void)reloadUI {
-    
+    if (self.thermostatModel != nil) {
+        self.graphArray = self.thermostatModel.tempDaysArray;
+        [self drawGraphView];
+        [self.switchButton setOn:self.thermostatModel.thermostatStatus animated:YES];
+        self.temperatureLabel.text = self.thermostatModel.temperature;
+        self.segmentedControl.selectedSegmentIndex = self.thermostatModel.temperatureType;
+    }
 }
 
 #pragma mark - Service methods
@@ -98,7 +105,5 @@
         }];
     }
 }
-
-#pragma mark - Private helpers
 
 @end

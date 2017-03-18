@@ -28,6 +28,7 @@
     
     if ((self = [super init])) {
         self.URLRequest = request;
+        self.expectedStatus = status;
         self.session = session;
         self.successBlock = success;
         self.failureBlock = failure;

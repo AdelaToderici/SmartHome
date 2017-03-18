@@ -98,7 +98,7 @@
                     <tabBarItem key="tabBarItem" title="Temperature" image="termo_final" id="YMb-J0-psK">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="PFE-bW-got">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PFE-bW-got">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.27504365021456806" green="0.74843749999999998" blue="0.71465793161086588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -202,6 +202,7 @@
                         <outlet property="segmentedControl" destination="MjG-Jl-6vc" id="zAr-05-hk1"/>
                         <outlet property="submitButton" destination="eqK-Xn-J0S" id="xR8-sl-fUk"/>
                         <outlet property="switchButton" destination="QOE-ns-1vv" id="aXI-SZ-Mf2"/>
+                        <outlet property="temperatureLabel" destination="EUH-QJ-DmR" id="5xS-hO-8vV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FKp-V3-phz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -242,7 +243,7 @@
                     <tabBarItem key="tabBarItem" title="Luminosity" image="lumino_final" id="SJ5-pd-WYU">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Pzj-oa-bx3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pzj-oa-bx3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -266,7 +267,7 @@
                     <tabBarItem key="tabBarItem" title="Washing Machine" image="washmash_final" id="fwo-mW-GaJ">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ece-g2-Diq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ece-g2-Diq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.27504365019999999" green="0.74843749999999998" blue="0.71465793160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -25,7 +25,6 @@
 		CFFBDE4F1E71F9DC00B8128E /* TIARoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE4E1E71F9DC00B8128E /* TIARoomModel.m */; };
 		CFFBDE521E71FA0800B8128E /* TIAWashingMachineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE511E71FA0800B8128E /* TIAWashingMachineModel.m */; };
 		CFFBDE5A1E720F7C00B8128E /* NSArray+Enumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE591E720F7C00B8128E /* NSArray+Enumerator.m */; };
-		CFFBDE5D1E7214B900B8128E /* TIATemperaturePerDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE5C1E7214B900B8128E /* TIATemperaturePerDayModel.m */; };
 		CFFBDE671E747B0B00B8128E /* TIASmartHomeService_NSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE661E747B0B00B8128E /* TIASmartHomeService_NSURLSession.m */; };
 		CFFBDE6A1E747D5300B8128E /* TIASmartHomeService_NSURLSessionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE691E747D5300B8128E /* TIASmartHomeService_NSURLSessionRequest.m */; };
 		CFFBDE701E74993A00B8128E /* NSHTTPURLResponse+SmartHomeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFBDE6F1E74993A00B8128E /* NSHTTPURLResponse+SmartHomeExtensions.m */; };
@@ -92,8 +91,6 @@
 		CFFBDE541E7200CA00B8128E /* TIASerializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIASerializable.h; sourceTree = "<group>"; };
 		CFFBDE581E720F7C00B8128E /* NSArray+Enumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Enumerator.h"; path = "Categories/NSArray+Enumerator.h"; sourceTree = "<group>"; };
 		CFFBDE591E720F7C00B8128E /* NSArray+Enumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Enumerator.m"; path = "Categories/NSArray+Enumerator.m"; sourceTree = "<group>"; };
-		CFFBDE5B1E7214B900B8128E /* TIATemperaturePerDayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIATemperaturePerDayModel.h; sourceTree = "<group>"; };
-		CFFBDE5C1E7214B900B8128E /* TIATemperaturePerDayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIATemperaturePerDayModel.m; sourceTree = "<group>"; };
 		CFFBDE621E74524B00B8128E /* TIASmartHomeService_SubclassMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIASmartHomeService_SubclassMethods.h; sourceTree = "<group>"; };
 		CFFBDE651E747B0B00B8128E /* TIASmartHomeService_NSURLSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIASmartHomeService_NSURLSession.h; sourceTree = "<group>"; };
 		CFFBDE661E747B0B00B8128E /* TIASmartHomeService_NSURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIASmartHomeService_NSURLSession.m; sourceTree = "<group>"; };
@@ -232,8 +229,6 @@
 				CFFBDE501E71FA0800B8128E /* TIAWashingMachineModel.h */,
 				CFFBDE511E71FA0800B8128E /* TIAWashingMachineModel.m */,
 				CFFBDE541E7200CA00B8128E /* TIASerializable.h */,
-				CFFBDE5B1E7214B900B8128E /* TIATemperaturePerDayModel.h */,
-				CFFBDE5C1E7214B900B8128E /* TIATemperaturePerDayModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -518,7 +513,6 @@
 				CFDFAB051CE3E9AC00511441 /* ServoMotorViewController.m in Sources */,
 				CFFBDE6A1E747D5300B8128E /* TIASmartHomeService_NSURLSessionRequest.m in Sources */,
 				CFFBDE4F1E71F9DC00B8128E /* TIARoomModel.m in Sources */,
-				CFFBDE5D1E7214B900B8128E /* TIATemperaturePerDayModel.m in Sources */,
 				CFFBDE701E74993A00B8128E /* NSHTTPURLResponse+SmartHomeExtensions.m in Sources */,
 				CFDFAB061CE3E9AC00511441 /* TemperatureViewController.m in Sources */,
 				CFFBDE521E71FA0800B8128E /* TIAWashingMachineModel.m in Sources */,

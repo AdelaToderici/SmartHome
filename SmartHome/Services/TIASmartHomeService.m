@@ -88,7 +88,7 @@ static TIASmartHomeService *SharedInstance;
 - (NSString *)fetchThermostatDataSuccess:(void(^)(TIAThermostatModel *thermostatModel))success
                              failure:(TIASmartHomeServiceFailure)failure {
     
-    return [self submitGETPath:@"/thermostat"
+    return [self submitGETPath:@"/cat" // to be replaced with /thermostat !!! 
                        success:^(NSData *data) {
                            if (data == nil) {
                                return;
@@ -96,7 +96,7 @@ static TIASmartHomeService *SharedInstance;
                            NSError *error = nil;
                            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
                            
-                           if (dict && [dict isKindOfClass:[NSArray class]]) {
+                           if (dict && [dict isKindOfClass:[NSDictionary class]]) {
                                TIAThermostatModel *model = [[TIAThermostatModel alloc] initWithDictionary:dict];
                                
                                if (success != NULL) {
