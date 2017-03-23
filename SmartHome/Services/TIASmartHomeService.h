@@ -60,6 +60,7 @@ typedef void (^TIASmartHomeServiceFailure)(NSError *error);
                            success:(TIASmartHomeServiceSuccess)success
                            failure:(TIASmartHomeServiceFailure)failure;
 
+// TO DO - use this methods
 - (void)cancelRequestWithIdentifier:(NSString *)identifier;
 
 - (void)resendRequestsPending;

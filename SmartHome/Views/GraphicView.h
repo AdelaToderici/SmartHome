@@ -13,7 +13,5 @@
 @property (nonatomic, strong) NSArray *graphPoints;
 @property (nonatomic, assign) NSInteger counter;
 
-- (CGFloat)columnXPoint:(int)column;
-
 @end
 

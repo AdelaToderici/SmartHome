@@ -58,6 +58,7 @@ static TIASmartHomeService *SharedInstance;
             [self persistServerRoot];
         }
         
+        // not used for the moment
         NSDictionary *userDictionary = [defaults objectForKey:kUserModelKey];
         if (userDictionary != nil) {
             self.userModel = [[TIAUserModel alloc] initWithDictionary:userDictionary];
@@ -66,8 +67,6 @@ static TIASmartHomeService *SharedInstance;
     
     return self;
 }
-
-#pragma mark - TEST Api methods
 
 - (void)persistServerRoot
 {
@@ -88,7 +87,7 @@ static TIASmartHomeService *SharedInstance;
 - (NSString *)fetchThermostatDataSuccess:(void(^)(TIAThermostatModel *thermostatModel))success
                              failure:(TIASmartHomeServiceFailure)failure {
     
-    return [self submitGETPath:@"/cat" // to be replaced with /thermostat !!! 
+    return [self submitGETPath:@"/thermostat"
                        success:^(NSData *data) {
                            if (data == nil) {
                                return;
@@ -122,7 +121,7 @@ static TIASmartHomeService *SharedInstance;
     
     return [self submitPOSTPath:@"/thermostat"
                            body:params
-                 expectedStatus:201
+                 expectedStatus:200
                         success:^(NSData *data) {
                             
                             if (success != NULL) {
@@ -142,7 +141,7 @@ static TIASmartHomeService *SharedInstance;
     
     return [self submitPOSTPath:@"/room"
                            body:params
-                 expectedStatus:201
+                 expectedStatus:200
                         success:^(NSData *data) {
                             
                             if (success != NULL) {
@@ -164,9 +163,9 @@ static TIASmartHomeService *SharedInstance;
                              @"machine[RPM]"        : rpm,
                              @"machine[time]"       : time };
     
-    return [self submitPOSTPath:@"/washingMachine"
+    return [self submitPOSTPath:@"/cat"  // @"/washingMachine"
                            body:params
-                 expectedStatus:201
+                 expectedStatus:200
                         success:^(NSData *data) {
                             
                             if (success != NULL) {

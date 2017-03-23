@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 
-@property (strong, nonatomic) GraphicView *graphView;
+@property (nonatomic, strong) GraphicView *graphView;
 @property (nonatomic, strong) NSArray *graphArray;
 @property (nonatomic, strong) TIAThermostatModel *thermostatModel;
 
@@ -35,14 +35,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupUI];
-    [self setupGraphView];
+//    self.graphArray = @[@6, @9, @5, @7, @10, @8, @3, @6, @5, @9, @4, @6];
     
+    [self setupUI];
     [self fetchThermostatData];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    [self setupGraphView];
     [self drawGraphView];
 }
 
@@ -61,20 +63,19 @@
 }
 
 - (void)setupGraphView {
-    self.graphArray = @[@6, @9, @5, @7, @10, @8, @3, @6, @5, @9, @4, @6];
     
     self.graphView = [[GraphicView alloc]
                       initWithFrame:CGRectMake(0, 0,
-                                               self.graphContentView.frame.size.width,
-                                               self.graphContentView.frame.size.height)];
+                                               self.graphContentView.bounds.size.width,
+                                               self.graphContentView.bounds.size.height)];
     self.graphView.backgroundColor = kClearColor;
+    self.graphView.clipsToBounds = YES;
     [self.graphContentView addSubview:self.graphView];
 }
 
 - (void)reloadUI {
     if (self.thermostatModel != nil) {
         self.graphArray = self.thermostatModel.tempDaysArray;
-        [self drawGraphView];
         [self.switchButton setOn:self.thermostatModel.thermostatStatus animated:YES];
         self.temperatureLabel.text = self.thermostatModel.temperature;
         self.segmentedControl.selectedSegmentIndex = self.thermostatModel.temperatureType;
@@ -93,7 +94,7 @@
         
         [service fetchThermostatDataSuccess:^(TIAThermostatModel *thermostatModel) {
             if (weakSelf) {
-                typeof(self) strongSelf = weakSelf;
+                __strong typeof(self) strongSelf = weakSelf;
                 strongSelf.thermostatModel = thermostatModel;
                 [strongSelf reloadUI];
             }

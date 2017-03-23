@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TIASerializable.h"
 
 extern NSString *const kWashingMachinePublicID;
 extern NSString *const kWashingMachineTemperature;
 extern NSString *const kWashingMachineRPM;
 extern NSString *const kWashingMachineTime;
 
-@interface TIAWashingMachineModel : NSObject
+@interface TIAWashingMachineModel : NSObject <TIASerializable>
 
 @property (nonatomic, strong) NSString *pulicID;
 @property (nonatomic, assign) NSInteger temperature;

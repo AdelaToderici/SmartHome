@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TIASerializable.h"
 
 extern NSString *const kRoomModelPublicID;
 extern NSString *const kRoomModelColor;
 
-@interface TIARoomModel : NSObject
+@interface TIARoomModel : NSObject <TIASerializable>
 
 @property (nonatomic, strong) NSString *pulicID;
 @property (nonatomic, assign) NSString *color;

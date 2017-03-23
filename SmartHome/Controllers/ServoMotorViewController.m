@@ -22,8 +22,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *RPMLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UIView *bubbleViewContainer;
 
-@property (nonatomic, strong) BublesView *bublesView;
+@property (nonatomic, strong) BublesView *bubblesView;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSArray *segmentedArray;
 @property (nonatomic, strong) NSDate *startDate;
@@ -42,10 +43,15 @@
     [super viewDidLoad];
     
     self.isRunning = false;
-    [self setupBublesView];
     [self setupPickerView];
     [self editUIComponents];
     [self setupPanGestureRecognizer];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    [self setupBubblesView];
 }
 
 #pragma mark - Action Methods
@@ -195,14 +201,14 @@
 
 #pragma mark - Private UI Methods
 
-- (void)setupBublesView {
+- (void)setupBubblesView {
     
-    self.bublesView = [[BublesView alloc]
-                       initWithFrame:CGRectMake(0, kNavBarHeight,
-                                                self.view.frame.size.width,
-                                                self.view.frame.size.height/kFrameDivision3_5)];
-    self.bublesView.backgroundColor = kClearColor;
-    [self.view addSubview:self.bublesView];
+    self.bubblesView = [[BublesView alloc]
+                       initWithFrame:CGRectMake(0.F, 0.F,
+                                                self.bubbleViewContainer.frame.size.width,
+                                                self.bubbleViewContainer.frame.size.height)];
+    self.bubblesView.backgroundColor = kClearColor;
+    [self.bubbleViewContainer addSubview:self.bubblesView];
 }
 
 - (void)setupPickerView {
@@ -251,7 +257,7 @@
 
 - (void)moveViewWithGestureRecognizer:(UIPanGestureRecognizer *)recognizer {
     
-    [self hidePikerView];
+    [self hidePickerView];
 }
 
 - (void)showPickerView {
@@ -262,7 +268,7 @@
                          andVelocity:kVelocity15_5];
 }
 
-- (void)hidePikerView {
+- (void)hidePickerView {
     
     [self animatePickerViewWithValue:CGRectMake(0,
                                                 self.view.frame.size.height,

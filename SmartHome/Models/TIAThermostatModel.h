@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TIASerializable.h"
 
-extern NSString *const kTemperaturePulicIDkey;
+extern NSString *const kTemperaturePublicIDKey;
 extern NSString *const kTemperatureKey;
 extern NSString *const kTemperatureDaysKey;
 extern NSString *const kTemperatureTypeKey;

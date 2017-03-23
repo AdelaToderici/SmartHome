@@ -43,11 +43,11 @@
     CGColorSpaceRelease(colorSpace);
     CGGradientRelease(gradient);
     
-    [self setupBublesImage];
-    [self setupServoLabes];
+    [self setupBubblesImage];
+    [self setupServoLabels];
 }
 
-- (void)setupBublesImage {
+- (void)setupBubblesImage {
     UIImageView *imageView = [UIComponents imageViewWithFrame:CGRectMake(0, 0,
                                                                          self.frame.size.width,
                                                                          self.frame.size.height-kFrameSize40)
@@ -56,7 +56,7 @@
     [self addSubview:imageView];
 }
 
-- (void)setupServoLabes {
+- (void)setupServoLabels {
     UILabel *startLabel = [UIComponents labelWithFrame:CGRectMake(kMargin20,
                                                                   self.frame.size.height-kFrameSize30,
                                                                   kFrameSize83, kFrameSize21)

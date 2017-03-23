@@ -47,8 +47,6 @@
 
 - (void)drawRect:(CGRect)rect {
     
-//    if (rect.size.width == self.frame.size.width) return;
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     width = rect.size.width;
@@ -158,7 +156,7 @@
     CGColorSpaceRelease(colorSpace);
     CGGradientRelease(gradient);
     
-    [self setupGraphicDisplay];
+    [self setupGraphDisplay];
 }
 
 // x point
@@ -176,7 +174,7 @@
     return y;
 }
 
-- (void)setupGraphicDisplay {
+- (void)setupGraphDisplay {
     
     [labelsContainer removeFromSuperview];
     
