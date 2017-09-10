@@ -10,24 +10,18 @@
 #import "TIASerializable.h"
 
 extern NSString *const kTemperaturePublicIDKey;
-extern NSString *const kTemperatureKey;
 extern NSString *const kTemperatureDaysKey;
 extern NSString *const kTemperatureTypeKey;
-extern NSString *const kThermostatStatusKey;
 
 @interface TIAThermostatModel : NSObject <TIASerializable>
 
 @property (nonatomic, strong) NSString *publicID;
-@property (nonatomic, strong) NSString *temperature;
-@property (nonatomic, assign) NSInteger temperatureType;
-@property (nonatomic, assign) NSInteger thermostatStatus;
-@property (nonatomic, strong) NSArray *tempDaysArray;
+@property (nonatomic, assign) NSString *temperatureType;
+@property (nonatomic, assign) NSString *thermostatStatus;
 
 - (instancetype)initWithPublicID:(NSString *)publicID
-                     temperature:(NSString *)temperature
-                 temperatureType:(BOOL)tempType
-                          status:(BOOL)status
-                 temperatureDays:(NSArray *)tempDaysArray;
+                 temperatureType:(NSString *)tempType
+                          status:(NSString *)status;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

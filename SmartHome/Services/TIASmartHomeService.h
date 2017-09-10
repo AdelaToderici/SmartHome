@@ -10,7 +10,9 @@
 
 @class TIAThermostatModel;
 @class TIAUserModel;
+@class TIAWashingMachineModel;
 
+extern NSString *const TIAServiceAuthRequireNotification;
 extern NSString *const TIAServicePendingNotification;
 
 typedef void (^TIASmartHomeServiceSuccess)(NSData *data);
@@ -29,11 +31,13 @@ typedef void (^TIASmartHomeServiceFailure)(NSError *error);
 - (NSString *)fetchThermostatDataSuccess:(void(^)(TIAThermostatModel *thermostatModel))success
                              failure:(TIASmartHomeServiceFailure)failure;
 
-- (NSString *)postThermostatDataWithTemperature:(NSString *)temperature
-                                temperatureType:(NSString *)tempType
-                               thermostatStatus:(NSString *)thermostatStatus
-                                        success:(void(^)())success
-                                        failure:(TIASmartHomeServiceFailure)failure;
+- (NSString *)fetchTemperatureDataSuccess:(void(^)(NSArray *temperatureArray))success
+                                  failure:(TIASmartHomeServiceFailure)failure;
+
+- (NSString *)postThermostatDataWithTemperatureType:(NSString *)tempType
+                                   thermostatStatus:(NSString *)thermostatStatus
+                                            success:(void(^)())success
+                                            failure:(TIASmartHomeServiceFailure)failure;
 
 #pragma mark - Room methods
 
@@ -41,13 +45,16 @@ typedef void (^TIASmartHomeServiceFailure)(NSError *error);
                             success:(void(^)())success
                             failure:(TIASmartHomeServiceFailure)failure;
 
-#pragma mark - Washing MAchine methods
+#pragma mark - Washing Machine methods
 
 - (NSString *)postWashingMachineDataWithTemperature:(NSString *)temperature
                                                 RPM:(NSString *)rpm
                                                time:(NSString *)time
                                             success:(void(^)())success
                                             failure:(TIASmartHomeServiceFailure)failure;
+
+- (NSString *)fetchMachineDataSuccess:(void(^)(TIAWashingMachineModel *machineModel))success
+                              failure:(TIASmartHomeServiceFailure)failure;
 
 @end
 

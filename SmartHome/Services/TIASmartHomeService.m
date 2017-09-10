@@ -9,17 +9,20 @@
 #import "TIASmartHomeService.h"
 #import "TIAUserModel.h"
 #import "TIAThermostatModel.h"
+#import "TIATemperatureModel.h"
+#import "TIAWashingMachineModel.h"
 #import "NSArray+Enumerator.h"
 #import "TIASmartHomeService_NSURLSession.h"
 
+NSString *const TIAServiceAuthRequireNotification = @"TIAServiceAuthRequireNotification";
 NSString *const TIAServicePendingNotification = @"TIAServicePendingNotification";
 
 static NSString *const kServerRootKey = @"ServerURLRoot";
-static NSString *const kServerURLKey = @"http://localhost:3000";
+static NSString *const kServerURLKey = @"http://smarthomeserver.azurewebsites.net";
 static NSString *const kUserModelKey = @"CurrentUser";
 static NSString *const kUserIdentifierKey = @"UserIdentifier";
 
-static TIASmartHomeService *SharedInstance;
+static TIASmartHomeService *sharedInstance;
 
 @interface TIASmartHomeService ()
 
@@ -38,10 +41,10 @@ static TIASmartHomeService *SharedInstance;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        SharedInstance = [[TIASmartHomeService_NSURLSession alloc] init];
+        sharedInstance = [[TIASmartHomeService_NSURLSession alloc] init];
     });
     
-    return SharedInstance;
+    return sharedInstance;
 }
 
 - (instancetype)init {
@@ -82,6 +85,94 @@ static TIASmartHomeService *SharedInstance;
     return self.serverRoot != nil;
 }
 
+#pragma mark - Authentication
+
+- (NSString *)signInWithUsername:(NSString *)username
+                        password:(NSString *)password
+                         success:(void(^)(TIAUserModel *userModel))success
+                         failure:(TIASmartHomeServiceFailure)failure {
+    
+    NSDictionary *params = @{@"user[name]"     : username,
+                             @"user[password]" : password};
+    
+    return [self submitPUTPath:@"/account"
+                     body:params
+           expectedStatus:201
+                  success:^(NSData *data) {
+                      NSError *error = nil;
+                      NSDictionary *userDict = [NSJSONSerialization
+                                                JSONObjectWithData:data
+                                                options:0
+                                                error:&error];
+                      if (userDict && [userDict isKindOfClass:[NSDictionary class]]) {
+                          self.userModel = [[TIAUserModel alloc] initWithDictionary:userDict];
+                          if (success != NULL) {
+                              success(self.userModel);
+                          }
+                      } else {
+                          if (failure != NULL) {
+                              failure(error);
+                          }
+                      }
+                  }
+                  failure:^(NSError *error) {
+                      if (failure != NULL) {
+                          failure(error);
+                      }
+                  }];
+}
+
+- (NSString *)registerUserWithUsername:(NSString *)username
+                              password:(NSString *)password
+                               success:(void(^)(TIAUserModel *userModel))success
+                               failure:(TIASmartHomeServiceFailure)failure {
+    
+    NSDictionary *params = @{@"user[name]"     : username,
+                             @"user[password]" : password};
+    
+    return [self submitPOSTPath:@"/account"
+                          body:params
+                expectedStatus:201
+                       success:^(NSData *data) {
+                           NSError *error = nil;
+                           NSDictionary *userDict = [NSJSONSerialization
+                                                     JSONObjectWithData:data
+                                                     options:0
+                                                     error:&error];
+                           if (userDict && [userDict isKindOfClass:[NSDictionary class]]) {
+                               self.userModel = [[TIAUserModel alloc] initWithDictionary:userDict];
+                               if (success != NULL) {
+                                   success(self.userModel);
+                               }
+                           } else {
+                               if (failure != NULL) {
+                                   failure(error);
+                               }
+                           }
+                       }
+                       failure:^(NSError *error) {
+                           if (failure != NULL) {
+                               failure(error);
+                           }
+                       }];
+}
+
+- (NSString *)signoutUserWithSuccess:(void(^)())success
+                             failure:(TIASmartHomeServiceFailure)failure {
+    
+    return [self submitDELETEPath:@"/account"
+                          success:^(NSData *data) {
+                              self.serverRoot = nil;
+                              self.userModel = nil;
+                              [self persistServerRoot];
+                              
+                              if (success != NULL) {
+                                  success();
+                              }
+                          }
+                          failure:failure];
+}
+
 #pragma mark - Thermostat methods
 
 - (NSString *)fetchThermostatDataSuccess:(void(^)(TIAThermostatModel *thermostatModel))success
@@ -93,14 +184,26 @@ static TIASmartHomeService *SharedInstance;
                                return;
                            }
                            NSError *error = nil;
-                           NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                           NSMutableArray *array = [NSJSONSerialization
+                                                 JSONObjectWithData:data
+                                                 options:0
+                                                 error:&error];
                            
-                           if (dict && [dict isKindOfClass:[NSDictionary class]]) {
-                               TIAThermostatModel *model = [[TIAThermostatModel alloc] initWithDictionary:dict];
+                           if (array && [array isKindOfClass:[NSArray class]]) {
                                
-                               if (success != NULL) {
-                                   success(model);
-                               } else {
+                               if (array.count > 0) {
+                                   for (NSDictionary *dict in array) {
+                                       
+                                       if (array.lastObject) {
+                                           TIAThermostatModel *model = [[TIAThermostatModel alloc] initWithDictionary:dict];
+                                           
+                                           if (success != NULL) {
+                                               success(model);
+                                           }
+                                       }
+                                   }
+                               }
+                               else {
                                    if (failure != NULL) {
                                        failure(error);
                                    }
@@ -109,15 +212,50 @@ static TIASmartHomeService *SharedInstance;
                        } failure:failure];
 }
 
-- (NSString *)postThermostatDataWithTemperature:(NSString *)temperature
-                                temperatureType:(NSString *)tempType
-                               thermostatStatus:(NSString *)thermostatStatus
-                                        success:(void(^)())success
-                                        failure:(TIASmartHomeServiceFailure)failure {
+- (NSString *)fetchTemperatureDataSuccess:(void(^)(NSArray *temperatureArray))success
+                                 failure:(TIASmartHomeServiceFailure)failure {
     
-    NSDictionary *params = @{ @"thermostat[temperature]"      : temperature,
-                              @"thermostat[tempeType]"        : tempType,
-                              @"thermostat[thermostatStatus]" : thermostatStatus };
+    return [self submitGETPath:@"/temperature/14"
+                       success:^(NSData *data) {
+                           if (data == nil) {
+                               return;
+                           }
+                           NSError *error = nil;
+                           NSMutableArray *array = [NSJSONSerialization
+                                                    JSONObjectWithData:data
+                                                    options:0
+                                                    error:&error];
+                           
+                           if (array && [array isKindOfClass:[NSArray class]]) {
+                               
+                               if (array.count > 0) {
+                                   NSMutableArray *temperatureArray = [[NSMutableArray alloc] init];
+                                   
+                                   for (NSDictionary *dict in array) {
+                                       
+                                       TIATemperatureModel *model = [[TIATemperatureModel alloc] initWithDictionary:dict];
+                                       [temperatureArray addObject:model];
+                                   }
+                                   if (success != NULL) {
+                                       success(temperatureArray);
+                                   }
+                               }
+                               else {
+                                   if (failure != NULL) {
+                                       failure(error);
+                                   }
+                               }
+                           }
+                       } failure:failure];
+}
+
+- (NSString *)postThermostatDataWithTemperatureType:(NSString *)tempType
+                                   thermostatStatus:(NSString *)thermostatStatus
+                                            success:(void(^)())success
+                                            failure:(TIASmartHomeServiceFailure)failure {
+    
+    NSDictionary *params = @{@"thermoStatus" : thermostatStatus,
+                             @"tempType"     : tempType};
     
     return [self submitPOSTPath:@"/thermostat"
                            body:params
@@ -137,7 +275,7 @@ static TIASmartHomeService *SharedInstance;
                             success:(void(^)())success
                             failure:(TIASmartHomeServiceFailure)failure {
     
-    NSDictionary *params = @{ @"room[color]" : color };
+    NSDictionary *params = @{@"color" : color};
     
     return [self submitPOSTPath:@"/room"
                            body:params
@@ -159,11 +297,11 @@ static TIASmartHomeService *SharedInstance;
                                             success:(void(^)())success
                                             failure:(TIASmartHomeServiceFailure)failure {
     
-    NSDictionary *params = @{@"machine[temperaure]" : temperature,
-                             @"machine[RPM]"        : rpm,
-                             @"machine[time]"       : time };
+    NSDictionary *params = @{@"temp" : temperature,
+                             @"rpm"        : rpm,
+                             @"time"       : time};
     
-    return [self submitPOSTPath:@"/cat"  // @"/washingMachine"
+    return [self submitPOSTPath:@"/machine"
                            body:params
                  expectedStatus:200
                         success:^(NSData *data) {
@@ -173,6 +311,44 @@ static TIASmartHomeService *SharedInstance;
                             }
                         }
                         failure:failure];
+}
+
+
+- (NSString *)fetchMachineDataSuccess:(void(^)(TIAWashingMachineModel *machineModel))success
+                              failure:(TIASmartHomeServiceFailure)failure {
+    
+    return [self submitGETPath:@"/machine"
+                       success:^(NSData *data) {
+                           if (data == nil) {
+                               return;
+                           }
+                           NSError *error = nil;
+                           NSMutableArray *array = [NSJSONSerialization
+                                                    JSONObjectWithData:data
+                                                    options:0
+                                                    error:&error];
+                           
+                           if (array && [array isKindOfClass:[NSArray class]]) {
+                               
+                               if (array.count > 0) {
+                                   for (NSDictionary *dict in array) {
+                                       
+                                       if (array.lastObject) {
+                                           TIAWashingMachineModel *model = [[TIAWashingMachineModel alloc] initWithDictionary:dict];
+                                           
+                                           if (success != NULL) {
+                                               success(model);
+                                           }
+                                       }
+                                   }
+                               }
+                               else {
+                                   if (failure != NULL) {
+                                       failure(error);
+                                   }
+                               }
+                           }
+                       } failure:failure];
 }
 
 #pragma mark - Abstract methods
@@ -197,7 +373,7 @@ static TIASmartHomeService *SharedInstance;
 
 - (NSURL *)URLWithPath:(NSString *)path {
     
-    NSURL *root = self.serverRoot ?: self.temporarServerRoot;
+    NSURL *root = self.serverRoot;
     NSAssert(root != nil, @"Request can't be make if serverRoot or temporarServerRoot are nil");
     
     return [NSURL URLWithString:path relativeToURL:root];

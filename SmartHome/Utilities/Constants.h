@@ -23,7 +23,7 @@
 // Fonts
 #define kAvenirNextFont17 [UIFont fontWithName:@"AvenirNextCondensed-DemiBold" size:17.0]
 #define kAvenirNextFont15 [UIFont fontWithName:@"AvenirNextCondensed-DemiBold" size:15.0]
-#define kSystemFont12 [UIFont systemFontOfSize:12]
+#define kSystemFont10 [UIFont systemFontOfSize:10]
 
 // Frame Size
 #define kMargin20 20

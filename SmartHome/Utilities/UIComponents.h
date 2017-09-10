@@ -25,4 +25,8 @@
 
 + (void)setupBorderView:(UIView *)view;
 
++ (UIActivityIndicatorView *)showActivityIndicatorInView:(UIViewController *)viewController;
+
++ (void)hideActivityIndicator:(UIActivityIndicatorView *)activityIndicator;
+
 @end

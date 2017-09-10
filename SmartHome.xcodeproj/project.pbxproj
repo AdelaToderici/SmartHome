@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B8B1ECF7CC07C83E7A60230B /* Pods_SmartHomeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC6B3330C5583F798B77BFD /* Pods_SmartHomeTests.framework */; };
+		CF03ADD01EA95C000032B8D7 /* TIATemperatureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF03ADCF1EA95C000032B8D7 /* TIATemperatureModel.m */; };
+		CF1786681EA7E8C8003F5A3D /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1786671EA7E8C8003F5A3D /* AuthenticationViewController.m */; };
 		CFBF84231CE3C94700021987 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBF84211CE3C94700021987 /* Main.storyboard */; };
 		CFBF84251CE3C94800021987 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFBF84241CE3C94800021987 /* Assets.xcassets */; };
 		CFBF84281CE3C94800021987 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBF84261CE3C94800021987 /* LaunchScreen.storyboard */; };
@@ -55,6 +57,10 @@
 		0AAC80EB3DA43164F595D07A /* Pods_SmartHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A2D536C38CFDD048F55D152 /* Pods_SmartHomeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartHomeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC6B3330C5583F798B77BFD /* Pods_SmartHomeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartHomeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF03ADCE1EA95C000032B8D7 /* TIATemperatureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIATemperatureModel.h; sourceTree = "<group>"; };
+		CF03ADCF1EA95C000032B8D7 /* TIATemperatureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIATemperatureModel.m; sourceTree = "<group>"; };
+		CF1786661EA7E8C8003F5A3D /* AuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationViewController.h; sourceTree = "<group>"; };
+		CF1786671EA7E8C8003F5A3D /* AuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationViewController.m; sourceTree = "<group>"; };
 		CFBF84151CE3C94700021987 /* SmartHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBF84221CE3C94700021987 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CFBF84241CE3C94800021987 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
@@ -213,6 +219,8 @@
 				CFDFAAFF1CE3E9AC00511441 /* LuminosityViewController.m */,
 				CFDFAB001CE3E9AC00511441 /* ServoMotorViewController.h */,
 				CFDFAB011CE3E9AC00511441 /* ServoMotorViewController.m */,
+				CF1786661EA7E8C8003F5A3D /* AuthenticationViewController.h */,
+				CF1786671EA7E8C8003F5A3D /* AuthenticationViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -229,6 +237,8 @@
 				CFFBDE501E71FA0800B8128E /* TIAWashingMachineModel.h */,
 				CFFBDE511E71FA0800B8128E /* TIAWashingMachineModel.m */,
 				CFFBDE541E7200CA00B8128E /* TIASerializable.h */,
+				CF03ADCE1EA95C000032B8D7 /* TIATemperatureModel.h */,
+				CF03ADCF1EA95C000032B8D7 /* TIATemperatureModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -363,6 +373,7 @@
 				TargetAttributes = {
 					CFBF84141CE3C94700021987 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = Q24FCVN27R;
 					};
 					CFBF842D1CE3C94800021987 = {
 						CreatedOnToolsVersion = 7.3;
@@ -511,6 +522,7 @@
 				CFFBDE5A1E720F7C00B8128E /* NSArray+Enumerator.m in Sources */,
 				CFFBDE751E77451900B8128E /* AppDelegate.m in Sources */,
 				CFDFAB051CE3E9AC00511441 /* ServoMotorViewController.m in Sources */,
+				CF1786681EA7E8C8003F5A3D /* AuthenticationViewController.m in Sources */,
 				CFFBDE6A1E747D5300B8128E /* TIASmartHomeService_NSURLSessionRequest.m in Sources */,
 				CFFBDE4F1E71F9DC00B8128E /* TIARoomModel.m in Sources */,
 				CFFBDE701E74993A00B8128E /* NSHTTPURLResponse+SmartHomeExtensions.m in Sources */,
@@ -520,6 +532,7 @@
 				CFDD6BC21D2D47E9005D42BD /* UIComponents.m in Sources */,
 				CFFBDE421E71F56100B8128E /* TIASmartHomeService.m in Sources */,
 				CFFBDE4B1E71F9A600B8128E /* TIAThermostatModel.m in Sources */,
+				CF03ADD01EA95C000032B8D7 /* TIATemperatureModel.m in Sources */,
 				CFFBDE671E747B0B00B8128E /* TIASmartHomeService_NSURLSession.m in Sources */,
 				CFDFAB041CE3E9AC00511441 /* LuminosityViewController.m in Sources */,
 				CFFBDE7B1E7745C200B8128E /* main.m in Sources */,
@@ -670,7 +683,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Q24FCVN27R;
 				INFOPLIST_FILE = SmartHome/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = abc.SmartHome;
@@ -682,7 +695,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Q24FCVN27R;
 				INFOPLIST_FILE = SmartHome/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = abc.SmartHome;

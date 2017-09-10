@@ -11,7 +11,8 @@
 @interface GraphicView : UIView
 
 @property (nonatomic, strong) NSArray *graphPoints;
-@property (nonatomic, assign) NSInteger counter;
+
+@property (nonatomic, assign) BOOL isFahrenheit;
 
 @end
 

@@ -8,17 +8,17 @@
 
 #import "TIAWashingMachineModel.h"
 
-NSString *const kWashingMachinePublicID = @"id";
+NSString *const kWashingMachinePublicID    = @"_id";
 NSString *const kWashingMachineTemperature = @"temp";
-NSString *const kWashingMachineRPM = @"rpm";
-NSString *const kWashingMachineTime = @"time";
+NSString *const kWashingMachineRPM         = @"rpm";
+NSString *const kWashingMachineTime        = @"time";
 
 @implementation TIAWashingMachineModel
 
 - (instancetype)initWithPublicID:(NSString *)publicID
-                     temperature:(NSInteger)temperature
-                             RPM:(NSInteger)RPM
-                            time:(NSInteger)time {
+                     temperature:(NSString *)temperature
+                             RPM:(NSString *)RPM
+                            time:(NSString *)time {
     
     if ((self = [super init])) {
         
@@ -34,24 +34,17 @@ NSString *const kWashingMachineTime = @"time";
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     
     return [self initWithPublicID:dictionary[kWashingMachinePublicID]
-                      temperature:[self intFromString:dictionary[kWashingMachineTemperature]]
-                              RPM:[self intFromString:dictionary[kWashingMachineRPM]]
-                             time:[self intFromString:dictionary[kWashingMachineTime]]];
+                      temperature:dictionary[kWashingMachineTemperature]
+                              RPM:dictionary[kWashingMachineRPM]
+                             time:dictionary[kWashingMachineTime]];
 }
 
 - (NSDictionary *)dictionaryRepresentation {
     
     return @{ kWashingMachinePublicID    : self.pulicID,
-              kWashingMachineTemperature : [NSNumber numberWithInteger:self.temperature],
-              kWashingMachineRPM         : [NSNumber numberWithInteger:self.RPM],
-              kWashingMachineTime        : [NSNumber numberWithInteger:self.time] };
-}
-
-#pragma mark - Helper Methods
-
-- (NSInteger)intFromString:(NSString *)string {
-    
-    return [string integerValue];
+              kWashingMachineTemperature : self.temperature,
+              kWashingMachineRPM         : self.RPM,
+              kWashingMachineTime        : self.time};
 }
 
 @end

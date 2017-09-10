@@ -8,8 +8,8 @@
 
 #import "TIARoomModel.h"
 
-NSString *const kRoomModelPublicID = @"id";
-NSString *const kRoomModelColor = @"color";
+NSString *const kRoomModelPublicID = @"_id";
+NSString *const kRoomModelColor    = @"color";
 
 @implementation TIARoomModel
 

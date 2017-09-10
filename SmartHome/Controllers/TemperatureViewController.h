@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AuthenticationViewController.h"
 
-@interface TemperatureViewController : UIViewController
+@interface TemperatureViewController : UIViewController <TIAAuthenticationViewControllerDelegate>
+
 
 @end

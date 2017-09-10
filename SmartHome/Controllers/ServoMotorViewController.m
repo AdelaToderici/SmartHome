@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "UIComponents.h"
 #import "TIASmartHomeService.h"
+#import "TIAWashingMachineModel.h"
 
 @interface ServoMotorViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate>
 
@@ -46,6 +47,7 @@
     [self setupPickerView];
     [self editUIComponents];
     [self setupPanGestureRecognizer];
+    [self fetchMachineData];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -111,6 +113,23 @@
                                                [self showAlertWithTitle:@"Error"
                                                                 andText:@"The operation couldn't be completed"];
                                            }];
+}
+
+- (void)fetchMachineData {
+    
+    TIASmartHomeService *service = [TIASmartHomeService sharedInstance];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [service fetchMachineDataSuccess:^(TIAWashingMachineModel *machineModel) {
+        if (weakSelf) {
+            __strong typeof(self) strongSelf = weakSelf;
+            [strongSelf reloadUIWithModel:machineModel];
+            
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark - UIPickerView DataSource
@@ -200,6 +219,12 @@
 }
 
 #pragma mark - Private UI Methods
+
+- (void)reloadUIWithModel:(TIAWashingMachineModel *)model {
+    self.temperatureLabel.text = model.temperature;
+    self.RPMLabel.text         = model.RPM;
+    self.timeLabel.text        = model.time;
+}
 
 - (void)setupBubblesView {
     
@@ -350,7 +375,6 @@
     [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"ro_RO"]];
     [dateFormatter setDateFormat:@"HH:mm:ss"];
     NSString *dateString = [dateFormatter stringFromDate:self.startDate];
-    
     self.startTimeLabel.text = dateString;
 }
 

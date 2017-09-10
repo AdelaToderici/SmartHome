@@ -185,19 +185,23 @@
     
     for (NSInteger i = 0; i < _graphPoints.count; i++) {
         CGFloat xPosition = [self columnXPoint:(int)i];
-        xPosition -= kPointSize5/kTwo;
+        xPosition -= 7/kTwo;
         
-        NSInteger index = i+1;
         UILabel *xGraphLabel = [UIComponents labelWithFrame:CGRectMake(xPosition,
                                                                        kFrameSize14-kTwo,
-                                                                       kFrameSize14,
+                                                                       kFrameSize14*2,
                                                                        kFrameSize14)
-                                                      title:[NSString stringWithFormat:@"%li", (long)index]
-                                                       font:kSystemFont12
+                                                      title:[NSString stringWithFormat:@"%@%@", self.graphPoints[i], [self temperatureType]]
+                                                       font:kSystemFont10
                                                       color:kWhiteColor];
         [labelsContainer addSubview:xGraphLabel];
     }
     [self addSubview:labelsContainer];
+}
+
+- (NSString *)temperatureType {
+    
+    return (self.isFahrenheit) ? @"℉" : @"℃";
 }
 
 @end

@@ -54,7 +54,8 @@
         __weak typeof(self) weakSelf = self;
         [service postRoomDataWithColor:[NSString stringWithFormat:@"%li", (long)self.colorIndex]
                                success:^{
-                                   [weakSelf showAlertWithTitle:@"Succeed" andText:@"Light room changed."];
+                                   [weakSelf showAlertWithTitle:@"Succeed"
+                                                        andText:@"Light room changed."];
                                } failure:^(NSError *error) {
                                    [weakSelf showAlertWithTitle:@"Error"
                                                         andText:@"The operation couldn't be completed."];

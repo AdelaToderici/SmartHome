@@ -17,14 +17,14 @@ extern NSString *const kWashingMachineTime;
 @interface TIAWashingMachineModel : NSObject <TIASerializable>
 
 @property (nonatomic, strong) NSString *pulicID;
-@property (nonatomic, assign) NSInteger temperature;
-@property (nonatomic, assign) NSInteger RPM;
-@property (nonatomic, assign) NSInteger time;
+@property (nonatomic, assign) NSString *temperature;
+@property (nonatomic, assign) NSString *RPM;
+@property (nonatomic, assign) NSString *time;
 
 - (instancetype)initWithPublicID:(NSString *)publicID
-                     temperature:(NSInteger)temperature
-                             RPM:(NSInteger)RPM
-                            time:(NSInteger)time;
+                     temperature:(NSString *)temperature
+                             RPM:(NSString *)RPM
+                            time:(NSString *)time;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
