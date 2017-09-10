@@ -80,11 +80,9 @@
                                                 [mutableRequest URL],
                                                 (long)HTTPResponse.statusCode);
                                           
-                                          NSString *message = [HTTPResponse errorMessageWithData:data];
+//                                          NSString *message = [HTTPResponse errorMessageWithData:data];
                                           
-                                          NSError *error = [NSError errorWithDomain:@"SmartHomeService"
-                                                                               code:HTTPResponse.statusCode
-                                                                           userInfo:@{ NSLocalizedDescriptionKey : message }];
+                                          NSString *error = @"The server and the app should be in the same network because of 'localhost'.";
                                           
                                           dispatch_async(dispatch_get_main_queue(), ^{
                                               weakSelf.failureBlock(error);

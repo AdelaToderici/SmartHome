@@ -18,7 +18,7 @@ NSString *const TIAServiceAuthRequireNotification = @"TIAServiceAuthRequireNotif
 NSString *const TIAServicePendingNotification = @"TIAServicePendingNotification";
 
 static NSString *const kServerRootKey = @"ServerURLRoot";
-static NSString *const kServerURLKey = @"http://smarthomeserver.azurewebsites.net";
+static NSString *const kServerURLKey = @"http://Adelas-MacBook-Pro.local:3000";
 static NSString *const kUserModelKey = @"CurrentUser";
 static NSString *const kUserIdentifierKey = @"UserIdentifier";
 
